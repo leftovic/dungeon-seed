@@ -1,18 +1,31 @@
 {
   "status": "complete",
-  "summary": "Implementation artifacts produced and per-task patches created. Clean copies of original stubs were created; tests reference clean impl copies.",
-  "files_created": [
-    "neil-docs/impl-task-001.patch .. impl-task-012.patch",
-    "neil-docs/impl-combined.patch",
-    "neil-docs/APPLY_AND_TEST.md",
-    "artifacts/impl-apply-script.ps1",
-    "src/gdscript/utils/deterministic_id_clean.gd",
-    "src/gdscript/utils/rng_wrapper_clean.gd"
+  "summary": "Dungeon Seed local implementation completed and verified with headless tests.",
+  "files_created_or_modified": [
+    "src/gdscript/utils/rng_wrapper_impl.gd",
+    "tools/generate_vectors.py",
+    "src/gdscript/dungeon/dungeon_generator.gd",
+    "src/gdscript/items/item.gd",
+    "src/gdscript/items/equipment_manager.gd",
+    "src/gdscript/combat/combat_core.gd",
+    "tests/unit/test_dungeon_generation.gd",
+    "tests/unit/test_item_equipment.gd",
+    "tests/unit/test_combat_core.gd",
+    "tests/unit/test_integration_dungeon_combat.gd",
+    "tests/fixtures/rng/seed-0001.json",
+    ".github/workflows/godot-headless-tests.yml",
+    "ci/godot-headless-tests.yml",
+    "PR_BODY.md",
+    "ci/PR_INSTRUCTIONS.md",
+    "ci/SECURE_ACTIONS_SECRETS.md",
+    "ci/HMAC_KEY_PROVISIONING.md",
+    "neil-docs/impl-combined-unified.patch"
   ],
-  "cleaned_original_stubs": true,
   "notes": [
-    "Created deterministic_id_clean.gd and rng_wrapper_clean.gd as safe replacements. To fully replace originals, apply the impl patches or manually overwrite the original files.",
-    "Apply per-task patches locally and run headless Godot tests in CI.",
-    "Do NOT commit production HMAC keys; use a KMS or repo secrets."
+    "All headless tests pass locally (ExitCode: 0).",
+    "Branch 'impl/dungeon-seed' is local; push and PR blocked waiting for remote credentials.",
+    "CI workflow added but requires repository secrets (GODOT_CHECKSUM, HMAC_KEY) for full verification in Actions.",
+    "Patches in neil-docs were sanitized to avoid unsigned literals.",
+    "Next steps: provide remote to push branch and open PR if desired."
   ]
 }
