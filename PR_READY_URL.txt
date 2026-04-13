@@ -1,0 +1,7 @@
+PR compare URL (open in browser to create PR):
+
+https://github.com/leftovic/dungeon-seed/compare/main...impl/dungeon-seed?expand=1
+
+Notes:
+- Title and body are prepared in PR_BODY.md. Open the link and paste the contents of PR_BODY.md into the PR description (or attach file via gh CLI).
+- If you want me to create the PR automatically, provide a GitHub Personal Access Token (not recommended in chat) or install and authenticate gh CLI and let me run 'gh pr create'.
