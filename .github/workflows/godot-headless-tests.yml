@@ -9,7 +9,7 @@ on:
 env:
   GODOT_VERSION: '4.6.1'
   GODOT_FILENAME: 'Godot_v4.6.1-stable_linux_headless.64'
-  GODOT_ZIP: '${{ env.GODOT_FILENAME }}.zip'
+  GODOT_ZIP: 'Godot_v4.6.1-stable_linux_headless.64.zip'
 
 jobs:
   tests:
