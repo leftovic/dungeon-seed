@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  GODOT_VERSION: '4.6.1'
+  GODOT_VERSION: '4.6.1-stable'
   GODOT_FILENAME: 'Godot_v4.6.1-stable_linux.x86_64'
   GODOT_ZIP: 'Godot_v4.6.1-stable_linux.x86_64.zip'
 
