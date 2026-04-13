@@ -34,7 +34,7 @@ jobs:
         run: |
           set -e
           echo "Downloading Godot $GODOT_VERSION"
-          GODOT_URL="https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/${GODOT_ZIP}"
+          GODOT_URL="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/${GODOT_ZIP}"
           wget -q -O godot.zip "$GODOT_URL"
           unzip -q godot.zip -d godot
           chmod +x godot/${GODOT_FILENAME}
