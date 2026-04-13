@@ -1,0 +1,5 @@
+{
+  "task": "prepare-distribution",
+  "status": "prep_complete",
+  "notes": "Build manifests and CI workflow stubs created; store submission artifacts pending real assets and signing keys."
+}

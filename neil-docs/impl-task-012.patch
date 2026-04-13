@@ -1,0 +1,7 @@
+*** Begin Patch
+*** Update File: tests/unit/test_runner.gd
+@@
+-extends SceneTree
++# Test runner that loads unit test scenes and ensures headless exit
++extends SceneTree
+*** End Patch

@@ -1,0 +1,15 @@
+# Combined implementation patch for Dungeon Seed
+# This file lists all per-task patches and provides an ordered application plan.
+# It does NOT contain a single unified diff. Apply the per-task patches instead:
+#   git checkout -b impl-task-001
+#   git apply --stat neil-docs/impl-task-001.patch
+#   git apply neil-docs/impl-task-001.patch
+#   git add -A && git commit -m "impl(task-001): apply reconciled ticket changes"
+# Repeat for impl-task-002.patch .. impl-task-012.patch
+
+# If you want a single combined patch, locally run:
+#   cat neil-docs/impl-task-0*.patch > neil-docs/impl-combined-unified.patch
+#   git apply --stat neil-docs/impl-combined-unified.patch
+#   git apply neil-docs/impl-combined-unified.patch
+
+# NOTE: Review each patch before applying. Manual steps required (HMAC secrets, project.godot, CI keys).

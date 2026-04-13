@@ -1,0 +1,9 @@
+{
+  "task": "task-005-audio-lore-foundation",
+  "checks": {
+    "audio_design_notes": true,
+    "lore_bible_stub": true
+  },
+  "summary": "Audio and lore scaffolding exists; asset pipelines and voice/mood mapping needed in implementation.",
+  "notes": "Add audio composer assets and sample stems for mood mapping."
+}

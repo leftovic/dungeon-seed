@@ -1,0 +1,9 @@
+{
+  "task": "task-012-planting-dispatch-ui",
+  "checks": {
+    "ui_skeleton_present": true,
+    "dispatch_flow_notes": true
+  },
+  "summary": "Planting/dispatch UI scaffolding present; UI tests and polish required in implementation.",
+  "notes": "Add navigation tests and focus-management unit tests."
+}

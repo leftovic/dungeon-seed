@@ -1,0 +1,9 @@
+*** Begin Patch
+*** Add File: neil-docs/README-DUNGEON-IMPLEMENTATION.md
++Dungeon Seed Implementation - Notes
++
++This folder contains reconciled tickets and migration notes for the Dungeon Seed epic. Contains placeholders for HMAC key migration and ID migration.
++
++See neil-docs/implementation-plans for task-level plans and this repo's ci/godot-headless-tests.yml for CI guidance.
++
+*** End Patch

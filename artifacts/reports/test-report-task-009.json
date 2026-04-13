@@ -1,0 +1,9 @@
+{
+  "task": "task-009-loot-economy",
+  "checks": {
+    "loot_tables_stub": true,
+    "economic_notes_present": true
+  },
+  "summary": "Loot economy scaffolding present; requires balance simulations and drop table unit tests during implementation.",
+  "notes": "Integrate Game Economist agent for Monte Carlo simulations later."
+}

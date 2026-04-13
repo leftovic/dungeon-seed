@@ -1,0 +1,6 @@
+{
+  "unit_tests": [
+    "tests/unit/test_deterministic_id.gd",
+    "tests/unit/test_rng_vectors.gd"
+  ]
+}

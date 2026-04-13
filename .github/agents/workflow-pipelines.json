@@ -1,0 +1,1028 @@
+{
+  "schema": "game-dev-workflow-pipelines-v2",
+  "project": "game-dev",
+  "totalPipelines": 9,
+  "pipelines": [
+    {
+      "id": "pipeline-1-core-game-loop",
+      "name": "Core Game Loop",
+      "description": "The main pipeline from pitch to ship",
+      "layout": "sequential",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "game-vision-architect",
+          "produces": [
+            "GDD.md"
+          ],
+          "consumes": [
+            "game-pitch"
+          ]
+        },
+        {
+          "order": 2,
+          "agent": "narrative-designer",
+          "produces": [
+            "lore-bible.md",
+            "character-bible.md"
+          ],
+          "consumes": [
+            "GDD.md"
+          ]
+        },
+        {
+          "order": 3,
+          "agent": "character-designer",
+          "produces": [
+            "character-sheets.json"
+          ],
+          "consumes": [
+            "GDD.md",
+            "character-bible.md"
+          ]
+        },
+        {
+          "order": 4,
+          "agent": "world-cartographer",
+          "produces": [
+            "world-map.json",
+            "biome-definitions.json"
+          ],
+          "consumes": [
+            "GDD.md",
+            "lore-bible.md"
+          ]
+        },
+        {
+          "order": 5,
+          "agent": "game-economist",
+          "produces": [
+            "economy-model.json"
+          ],
+          "consumes": [
+            "GDD.md",
+            "character-sheets.json"
+          ]
+        },
+        {
+          "order": 6,
+          "agent": "game-art-director",
+          "produces": [
+            "style-guide.md"
+          ],
+          "consumes": [
+            "GDD.md"
+          ]
+        },
+        {
+          "order": 7,
+          "agent": "game-audio-director",
+          "produces": [
+            "music-direction.md"
+          ],
+          "consumes": [
+            "GDD.md",
+            "biome-definitions.json"
+          ]
+        },
+        {
+          "order": 8,
+          "agent": "the-decomposer",
+          "produces": [
+            "decomposition.md"
+          ],
+          "consumes": [
+            "GDD.md",
+            "all-bibles"
+          ]
+        },
+        {
+          "order": 9,
+          "agent": "the-aggregator",
+          "produces": [
+            "master-task-matrix.json"
+          ],
+          "consumes": [
+            "decomposition.md"
+          ]
+        },
+        {
+          "order": 10,
+          "agent": "game-ticket-writer",
+          "produces": [
+            "tickets/"
+          ],
+          "consumes": [
+            "decomposition.md"
+          ],
+          "note": "4-pass blind pipeline"
+        },
+        {
+          "order": 11,
+          "agent": "implementation-plan-builder",
+          "produces": [
+            "plans/"
+          ],
+          "consumes": [
+            "tickets/"
+          ]
+        },
+        {
+          "order": 12,
+          "agent": "game-code-executor",
+          "produces": [
+            "source-code"
+          ],
+          "consumes": [
+            "plans/"
+          ]
+        },
+        {
+          "order": 13,
+          "agent": "playtest-simulator",
+          "produces": [
+            "playtest-report.json"
+          ],
+          "consumes": [
+            "game-build"
+          ]
+        },
+        {
+          "order": 14,
+          "agent": "balance-auditor",
+          "produces": [
+            "balance-report.md"
+          ],
+          "consumes": [
+            "playtest-report.json"
+          ]
+        },
+        {
+          "order": 14.5,
+          "agent": "game-analytics-designer",
+          "produces": [
+            "analytics/EVENT-TAXONOMY.json",
+            "analytics/sdk/Analytics.gd",
+            "analytics/dashboards/",
+            "analytics/ANALYTICS-HEALTH-REPORT.md",
+            "analytics/PRIVACY-COMPLIANCE-AUDIT.md"
+          ],
+          "consumes": [
+            "playtest-report.json",
+            "balance-report.md",
+            "economy-model.json",
+            "source-code"
+          ],
+          "note": "telemetry instrumentation, dashboards, retention models, A/B framework, privacy compliance"
+        },
+        {
+          "order": 15,
+          "agent": "game-build-packaging-specialist",
+          "produces": [
+            "BUILD-MANIFEST.json",
+            "builds/",
+            "ci/",
+            "PLATFORM-CERTIFICATION-CHECKLIST.md",
+            "BUILD-VALIDATION-REPORT.md"
+          ],
+          "consumes": [
+            "source-code",
+            "BUILD-MATRIX.md",
+            "PERFORMANCE-BUDGET.md",
+            "playtest-report.json",
+            "balance-report.md"
+          ],
+          "note": "cross-platform export, packaging, CI/CD, store cert"
+        },
+        {
+          "order": 15.5,
+          "agent": "store-submission-specialist",
+          "produces": [
+            "STORE-READINESS-SCORECARD.md",
+            "SUBMISSION-CHECKLIST.md",
+            "PRICING-MATRIX.json",
+            "RATING-PORTFOLIO.json",
+            "CROSS-STORE-CONSISTENCY.md",
+            "store-submissions/"
+          ],
+          "consumes": [
+            "BUILD-MANIFEST.json",
+            "builds/",
+            "economy-model.json",
+            "screenshots/",
+            "trailers/",
+            "EULA.md",
+            "PRIVACY-POLICY.md"
+          ],
+          "note": "multi-platform store submission — Steam, Epic, itch.io, GOG, iOS, Android, console"
+        },
+        {
+          "order": 16,
+          "agent": "live-ops-designer",
+          "produces": [
+            "content-calendar.md"
+          ],
+          "consumes": [
+            "economy-model.json",
+            "BUILD-MANIFEST.json"
+          ]
+        },
+        {
+          "order": 17,
+          "agent": "patch-update-manager",
+          "produces": [
+            "PATCH-MANIFEST.json",
+            "patches/",
+            "migrations/",
+            "CHANGELOG.md",
+            "ROLLBACK-PLAYBOOK.md",
+            "VERSION-HISTORY.json",
+            "UPDATE-HEALTH.md"
+          ],
+          "consumes": [
+            "BUILD-MANIFEST.json",
+            "source-code",
+            "economy-model.json",
+            "content-calendar.md",
+            "SAVE-SCHEMA.json",
+            "MOD-API-REGISTRY.json"
+          ],
+          "note": "post-launch: delta patches, save migration, hotfixes, DLC packaging, staged rollouts"
+        }
+      ]
+    },
+    {
+      "id": "pipeline-2-narrative",
+      "name": "Narrative Pipeline",
+      "description": "Story, characters, quests, dialogue",
+      "layout": "mixed",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "narrative-designer",
+          "produces": [
+            "lore-bible.md"
+          ]
+        },
+        {
+          "order": 2,
+          "agent": "character-designer",
+          "produces": [
+            "character-sheets.json"
+          ]
+        },
+        {
+          "order": 3,
+          "agent": "dialogue-engine-builder",
+          "produces": [
+            "dialogue-system"
+          ]
+        },
+        {
+          "order": 4,
+          "agent": "game-economist",
+          "produces": [
+            "quest-rewards.json"
+          ],
+          "note": "quest reward calibration"
+        }
+      ]
+    },
+    {
+      "id": "pipeline-3-art",
+      "name": "Art Pipeline",
+      "description": "Visual assets from style guide to scene",
+      "layout": "sequential",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "game-art-director",
+          "produces": [
+            "style-guide.md"
+          ]
+        },
+        {
+          "order": 2,
+          "agent": "procedural-asset-generator",
+          "produces": [
+            "assets/"
+          ]
+        },
+        {
+          "order": 2.5,
+          "agent": "architecture-interior-sculptor",
+          "produces": [
+            "building-kits/",
+            "interiors/",
+            "ARCHITECTURE-MANIFEST.json"
+          ],
+          "consumes": [
+            "style-guide.md",
+            "ASSET-MANIFEST.json",
+            "biome-definitions.json",
+            "building-briefs/"
+          ],
+          "note": "parallel with asset-gen — building kits + furnished interiors"
+        },
+        {
+          "order": 3,
+          "agent": "beast-creature-sculptor",
+          "produces": [
+            "creature-models/",
+            "creature-rigs/",
+            "creature-sprites/",
+            "CREATURE-MANIFEST.json"
+          ],
+          "consumes": [
+            "style-guide.md",
+            "color-palette.json",
+            "enemy-bestiary.json",
+            "companion-profiles.json",
+            "fauna-tables.json",
+            "hitbox-configs.json"
+          ]
+        },
+        {
+          "order": 4,
+          "agent": "sprite-animation-generator",
+          "produces": [
+            "spritesheets/",
+            "ANIMATION-MANIFEST.json",
+            "*.tres"
+          ],
+          "consumes": [
+            "ASSET-MANIFEST.json",
+            "CREATURE-MANIFEST.json",
+            "style-guide.md",
+            "hitbox-configs.json"
+          ]
+        },
+        {
+          "order": 5,
+          "agent": "vfx-designer",
+          "produces": [
+            "effects/",
+            "shaders/",
+            "VFX-MANIFEST.json"
+          ],
+          "consumes": [
+            "style-guide.md",
+            "color-palette.json",
+            "combo-system.json",
+            "frame-data.json",
+            "CREATURE-MANIFEST.json"
+          ]
+        },
+        {
+          "order": 6,
+          "agent": "ui-hud-builder",
+          "produces": [
+            "ui/themes/game-theme.tres",
+            "ui/hud/",
+            "ui/menus/",
+            "UI-MANIFEST.json",
+            "UI-ACCESSIBILITY-REPORT.md"
+          ],
+          "consumes": [
+            "style-guide.md",
+            "color-palette.json",
+            "ui-design-system.md",
+            "economy-model.json",
+            "dialogue-data-schema.json",
+            "05-needs-system.json"
+          ]
+        },
+        {
+          "order": 7,
+          "agent": "scene-compositor",
+          "produces": [
+            "scenes/"
+          ]
+        },
+        {
+          "order": 7.5,
+          "agent": "cinematic-director",
+          "produces": [
+            "cutscenes/",
+            "shot-lists/",
+            "storyboards/",
+            "camera-paths/",
+            "trailers/",
+            "CINEMATIC-MANIFEST.json",
+            "CINEMATIC-BUDGET-REPORT.md"
+          ],
+          "consumes": [
+            "scenes/",
+            "style-guide.md",
+            "music-sync-cues.json",
+            "character-sheets.json",
+            "screenplay-scripts"
+          ],
+          "note": "cutscene choreography, trailers, cinematic transitions"
+        },
+        {
+          "order": 8,
+          "agent": "game-art-director",
+          "produces": [
+            "art-audit-report.md"
+          ],
+          "note": "audit mode"
+        }
+      ]
+    },
+    {
+      "id": "pipeline-4-audio",
+      "name": "Audio Pipeline",
+      "description": "Music, SFX, ambient soundscapes",
+      "layout": "sequential",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "game-audio-director",
+          "produces": [
+            "sound-design-doc.md"
+          ]
+        },
+        {
+          "order": 2,
+          "agent": "audio-composer",
+          "produces": [
+            "music/",
+            "sfx/",
+            "ambience/"
+          ]
+        },
+        {
+          "order": 3,
+          "agent": "game-audio-director",
+          "produces": [
+            "audio-audit-report.md"
+          ],
+          "note": "audit mode"
+        }
+      ]
+    },
+    {
+      "id": "pipeline-5-world",
+      "name": "World Pipeline",
+      "description": "Maps, biomes, procedural generation, ecosystems",
+      "layout": "sequential",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "world-cartographer",
+          "produces": [
+            "world-map.json",
+            "biome-definitions.json"
+          ]
+        },
+        {
+          "order": 1.5,
+          "produces": [
+            "heightmaps/",
+            "biome-splatmaps/",
+            "skybox/",
+            "weather-configs/"
+          ],
+          "consumes": [
+            "world-map.json",
+            "biome-definitions.json",
+            "style-guide.md"
+          ],
+          "agent": "terrain-environment-sculptor",
+          "note": "Heightmaps, erosion, biome painting, skyboxes, weather particles, caves"
+        },
+        {
+          "order": 2,
+          "agent": "procedural-asset-generator",
+          "produces": [
+            "biome-assets/"
+          ]
+        },
+        {
+          "order": 2.5,
+          "agent": "architecture-interior-sculptor",
+          "produces": [
+            "building-kits/",
+            "dungeon-room-kits/",
+            "ARCHITECTURE-MANIFEST.json"
+          ],
+          "consumes": [
+            "biome-definitions.json",
+            "world-map.json",
+            "ASSET-MANIFEST.json",
+            "building-briefs/",
+            "dungeon-blueprints.json"
+          ],
+          "note": "settlement buildings + dungeon interiors for world population"
+        },
+        {
+          "order": 3,
+          "agent": "tilemap-level-designer",
+          "produces": [
+            "tilemaps/",
+            "spawn-data/",
+            "LEVEL-MANIFEST.json"
+          ],
+          "consumes": [
+            "world-map.json",
+            "biome-definitions.json",
+            "biome-assets/",
+            "ASSET-MANIFEST.json",
+            "ARCHITECTURE-MANIFEST.json",
+            "drop-tables.json"
+          ],
+          "note": "procedural tilemap generation from zone specs + tile assets + building kits"
+        },
+        {
+          "order": 4,
+          "agent": "scene-compositor",
+          "produces": [
+            "populated-scenes/"
+          ],
+          "consumes": [
+            "tilemaps/",
+            "spawn-data/"
+          ]
+        },
+        {
+          "order": 5,
+          "agent": "ai-behavior-designer",
+          "produces": [
+            "ecosystem-sim-config.json"
+          ],
+          "consumes": [
+            "spawn-data/"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pipeline-6-economy-balance",
+      "name": "Economy & Balance Pipeline",
+      "description": "Economy design, balance testing, convergence",
+      "layout": "mixed",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "game-economist",
+          "produces": [
+            "economy-model.json"
+          ]
+        },
+        {
+          "order": 2,
+          "agent": "combat-system-builder",
+          "produces": [
+            "damage-formulas.json"
+          ]
+        },
+        {
+          "order": 3,
+          "agent": "balance-auditor",
+          "produces": [
+            "balance-report.md"
+          ]
+        },
+        {
+          "order": 4,
+          "agent": "playtest-simulator",
+          "produces": [
+            "playtest-report.json"
+          ]
+        },
+        {
+          "order": 5,
+          "agent": "game-economist",
+          "produces": [
+            "rebalanced-economy.json"
+          ],
+          "note": "fix pass"
+        }
+      ]
+    },
+    {
+      "layout": "sequential",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "game-build-packaging-specialist",
+          "produces": [
+            "BUILD-MANIFEST.json",
+            "builds/"
+          ],
+          "note": "Cross-platform builds: Win/Mac/Linux/Web/Android/iOS/Console",
+          "consumes": [
+            "source-code",
+            "game-project"
+          ]
+        },
+        {
+          "order": 2,
+          "agent": "demo-showcase-builder",
+          "produces": [
+            "trailers/",
+            "press-kit/",
+            "screenshots/"
+          ],
+          "note": "Marketing assets, store page materials",
+          "consumes": [
+            "game-build"
+          ]
+        },
+        {
+          "order": 3,
+          "agent": "localization-manager",
+          "produces": [
+            "translations/",
+            "locale-configs/"
+          ],
+          "note": "i18n string extraction, translation coordination",
+          "consumes": [
+            "source-code",
+            "dialogue-trees"
+          ]
+        },
+        {
+          "order": 4,
+          "agent": "compliance-officer",
+          "produces": [
+            "RATING-PORTFOLIO.json",
+            "LEGAL-COMPLIANCE.md"
+          ],
+          "note": "ESRB/PEGI ratings, loot box regs, COPPA, GDPR",
+          "consumes": [
+            "game-build"
+          ]
+        },
+        {
+          "order": 5,
+          "agent": "store-submission-specialist",
+          "produces": [
+            "store-submissions/",
+            "STORE-READINESS.md"
+          ],
+          "note": "Steam, Epic, itch.io, App Store, Play Store, console stores",
+          "consumes": [
+            "builds/",
+            "trailers/",
+            "screenshots/",
+            "RATING-PORTFOLIO.json"
+          ]
+        },
+        {
+          "order": 6,
+          "agent": "release-manager",
+          "produces": [
+            "RELEASE-NOTES.md",
+            "CHANGELOG.md"
+          ],
+          "note": "Launch coordination, go/no-go gates",
+          "consumes": [
+            "builds/",
+            "store-submissions/"
+          ]
+        },
+        {
+          "order": 7,
+          "agent": "deployment-strategist",
+          "produces": [
+            "infra-configs/",
+            "CDN-setup/"
+          ],
+          "note": "Game servers, CDN, auto-scaling",
+          "consumes": [
+            "builds/"
+          ]
+        },
+        {
+          "order": 8,
+          "agent": "game-analytics-designer",
+          "produces": [
+            "analytics/",
+            "dashboards/"
+          ],
+          "note": "Telemetry, retention metrics, A/B testing",
+          "consumes": [
+            "source-code"
+          ]
+        },
+        {
+          "order": 9,
+          "agent": "live-ops-designer",
+          "produces": [
+            "content-calendar.md",
+            "season-pass/"
+          ],
+          "note": "Season passes, events, battle pass",
+          "consumes": [
+            "economy-model.json",
+            "game-build"
+          ]
+        },
+        {
+          "order": 10,
+          "agent": "patch-update-manager",
+          "produces": [
+            "patches/",
+            "CHANGELOG.md"
+          ],
+          "note": "Delta patches, save migration, hotfixes, DLC",
+          "consumes": [
+            "source-code",
+            "builds/"
+          ]
+        },
+        {
+          "order": 11,
+          "agent": "cost-optimizer",
+          "produces": [
+            "COST-ANALYSIS.md"
+          ],
+          "note": "Hosting costs, CDN, server scaling optimization",
+          "consumes": [
+            "infra-configs/",
+            "analytics/"
+          ]
+        },
+        {
+          "order": 12,
+          "agent": "customer-feedback-synthesizer",
+          "produces": [
+            "FEEDBACK-REPORT.md"
+          ],
+          "note": "Steam reviews, Discord, social media → actionable insights",
+          "consumes": [
+            "analytics/"
+          ]
+        },
+        {
+          "order": 13,
+          "agent": "incident-response-planner",
+          "produces": [
+            "RUNBOOKS.md",
+            "ESCALATION-MATRIX.md"
+          ],
+          "note": "Server outage, exploit, PR crisis response",
+          "consumes": [
+            "infra-configs/"
+          ]
+        }
+      ],
+      "description": "Getting the game from 'it works' to 'it's on Steam' and keeping it alive post-launch",
+      "name": "Distribution & Live Ops",
+      "id": "pipeline-7-distribution"
+    },
+    {
+      "layout": "sequential",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "camera-system-architect",
+          "produces": [
+            "camera-configs/",
+            "CameraRig.gd"
+          ],
+          "note": "Follow cam, collision, VR comfort, screen shake",
+          "consumes": [
+            "GDD.md",
+            "game-architecture"
+          ]
+        },
+        {
+          "order": 2,
+          "agent": "cinematic-director",
+          "produces": [
+            "cutscenes/",
+            "trailers/",
+            "storyboards/"
+          ],
+          "note": "Shot composition, cutscene choreography, trailer assembly",
+          "consumes": [
+            "lore-bible.md",
+            "camera-configs/",
+            "character-sheets.json"
+          ]
+        }
+      ],
+      "description": "Camera systems, cutscenes, and cinematic storytelling",
+      "name": "Camera & Cinematics",
+      "id": "pipeline-8-camera-cinematics"
+    },
+    {
+      "layout": "parallel",
+      "steps": [
+        {
+          "order": 1,
+          "agent": "crafting-system-builder",
+          "produces": [
+            "crafting/"
+          ],
+          "note": "OPTIONAL: Recipes, workbenches, quality tiers",
+          "consumes": [
+            "economy-model.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "housing-base-building-designer",
+          "produces": [
+            "housing/"
+          ],
+          "note": "OPTIONAL: Player housing, furniture, defense",
+          "consumes": [
+            "architecture-assets"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "farming-harvest-specialist",
+          "produces": [
+            "farming/"
+          ],
+          "note": "OPTIONAL: Crops, seasons, livestock",
+          "consumes": [
+            "economy-model.json",
+            "weather-system"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "fishing-system-designer",
+          "produces": [
+            "fishing/"
+          ],
+          "note": "OPTIONAL: Cast/reel minigame, 200+ fish species",
+          "consumes": [
+            "aquatic-assets",
+            "economy-model.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "cooking-alchemy-system-builder",
+          "produces": [
+            "cooking/"
+          ],
+          "note": "OPTIONAL: Ingredient experimentation, buff potions",
+          "consumes": [
+            "economy-model.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "mount-vehicle-system-builder",
+          "produces": [
+            "mounts/"
+          ],
+          "note": "OPTIONAL: Riding, flying, racing",
+          "consumes": [
+            "creature-assets",
+            "camera-configs/"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "guild-social-system-builder",
+          "produces": [
+            "guilds/"
+          ],
+          "note": "OPTIONAL: Clans, ranks, shared storage",
+          "consumes": [
+            "multiplayer-system"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "achievement-trophy-system-builder",
+          "produces": [
+            "achievements/"
+          ],
+          "note": "OPTIONAL: Platform trophies, completion tracking",
+          "consumes": [
+            "game-events"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "relationship-romance-builder",
+          "produces": [
+            "relationships/"
+          ],
+          "note": "OPTIONAL: NPC affinity, dating, marriage",
+          "consumes": [
+            "dialogue-trees",
+            "character-sheets.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "weather-daynight-cycle-designer",
+          "produces": [
+            "weather/",
+            "day-night/"
+          ],
+          "note": "OPTIONAL: Dynamic weather, seasonal changes, NPC schedules",
+          "consumes": [
+            "biome-definitions.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "photo-mode-designer",
+          "produces": [
+            "photo-mode/"
+          ],
+          "note": "OPTIONAL: Free camera, filters, poses, sharing",
+          "consumes": [
+            "camera-configs/"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "character-customization-builder",
+          "produces": [
+            "customization/"
+          ],
+          "note": "OPTIONAL: Character creator, transmog, dyes",
+          "consumes": [
+            "humanoid-assets"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "survival-mechanics-designer",
+          "produces": [
+            "survival/"
+          ],
+          "note": "OPTIONAL: Hunger, thirst, temperature, shelter",
+          "consumes": [
+            "weather-system",
+            "economy-model.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "taming-breeding-specialist",
+          "produces": [
+            "taming/"
+          ],
+          "note": "OPTIONAL: Capture, genetics, breeding, evolution",
+          "consumes": [
+            "creature-assets",
+            "economy-model.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "procedural-quest-generator",
+          "produces": [
+            "procedural-quests/"
+          ],
+          "note": "OPTIONAL: Radiant quests, bounty boards",
+          "consumes": [
+            "world-map.json",
+            "economy-model.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "trading-economy-builder",
+          "produces": [
+            "trading/"
+          ],
+          "note": "OPTIONAL: Shops, auction house, player trading",
+          "consumes": [
+            "economy-model.json"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "minigame-framework-builder",
+          "produces": [
+            "minigames/"
+          ],
+          "note": "OPTIONAL: Puzzle, rhythm, racing, card games",
+          "consumes": [
+            "game-code"
+          ]
+        },
+        {
+          "order": 1,
+          "agent": "pet-companion-system-builder",
+          "produces": [
+            "pets/"
+          ],
+          "note": "OPTIONAL: Pet bonding, evolution, companion AI",
+          "consumes": [
+            "creature-assets",
+            "ai-behavior"
+          ]
+        }
+      ],
+      "description": "Pick which game features your game needs — each is independently activatable",
+      "name": "Game Trope Addons (Optional Modules)",
+      "id": "pipeline-9-trope-addons"
+    }
+  ]
+}

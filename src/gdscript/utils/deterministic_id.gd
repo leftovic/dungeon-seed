@@ -1,0 +1,52 @@
+# deterministic_id.gd
+# Deterministic ID generator for game objects.
+# Generates IDs with format: <epoch_ms>-<player_hex>-<counter>-<sig>
+# where sig is a truncated SHA256 hex of namespaced input for quick integrity check.
+# NOTE: For production integrity/HMAC, replace signature generation with HMAC-SHA256
+# using a secure key provided by a KMS. See neil-docs/security/HMAC-KEY-MIGRATION.md
+# for rotation and CI integration notes.
+
+extends Node
+class_name DeterministicId
+
+# Generate a deterministic ID.
+# player_id: stable player identifier (string)
+# epoch_ms: milliseconds since epoch (int)
+# counter: monotonic counter to avoid collisions for same ms (int)
+# namespace: optional additional namespace salt (string)
+func generate(player_id: String, epoch_ms: int, counter: int, namespace: String = "") -> String:
+	var input_str: String = "%d-%s-%d-%s" % [epoch_ms, player_id, counter, namespace]
+	# Compute SHA256 digest of the namespaced input
+	var hasher: HashingContext = HashingContext.new()
+	hasher.start(HashingContext.HASH_SHA256)
+	hasher.update(input_str.to_utf8())
+	var digest: PackedByteArray = hasher.finish()
+	var hex_str: String = ""
+	for b in digest:
+		hex_str += "%02x" % b
+	# Short hex for player id (first 6 chars of sha256(player_id))
+	var player_hash: String = _short_hex_from_string(player_id, 6)
+	# Truncated signature for quick integrity check (first 12 hex chars)
+	var sig: String = hex_str.substr(0, 12)
+	# zero-pad counter to 8 digits
+	var counter_str: String = "%08d" % counter
+	return "%d-%s-%s-%s" % [epoch_ms, player_hash, counter_str, sig]
+
+# Helper: produce k-length hex prefix from SHA256 of an input string
+func _short_hex_from_string(s: String, k: int = 6) -> String:
+	var hc: HashingContext = HashingContext.new()
+	hc.start(HashingContext.HASH_SHA256)
+	hc.update(s.to_utf8())
+	var d: PackedByteArray = hc.finish()
+	var h: String = ""
+	for b in d:
+		h += "%02x" % b
+	if k <= 0:
+		return h
+	return h.substr(0, k)
+
+# Placeholder HMAC integration note:
+# To switch to HMAC-SHA256, use a secure key stored in CI/secret manager and compute:
+# sig = HMAC_SHA256(key, input_str) and then hex-encode. Do NOT commit keys to the repo.
+# The HMAC key manager should live in src/Security/HmacKeyManager.gd (or equivalent service).
+\n# Implement UUIDv5 + HMAC fallback here\n

@@ -1,0 +1,10 @@
+*** Begin Patch
+*** Add File: artifacts/implementation-report.json
++{
++  "status": "incomplete",
++  "summary": "Placeholder; final report will be written by automation",
++  "files_created": [],
++  "notes": []
++}
++
+*** End Patch

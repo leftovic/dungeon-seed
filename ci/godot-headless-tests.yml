@@ -1,0 +1,19 @@
+# CI stub for running Godot headless tests
+# This is a placeholder that outlines the steps required.
+
+name: Godot Headless Tests (stub)
+
+on: [push, pull_request]
+
+jobs:
+  headless-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Godot (placeholder)
+        run: echo "Install Godot and dependencies here"
+      - name: Run unit tests (placeholder)
+        run: echo "Run Godot headless unit tests (tests/unit)"
+      - name: Run reachability/perf harness (placeholder)
+        run: echo "Run reachability and performance harness for task-007"

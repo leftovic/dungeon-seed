@@ -1,0 +1,9 @@
+{
+  "task": "task-007-dungeon-generator",
+  "checks": {
+    "generator_design_docs": true,
+    "room_template_placeholders": true
+  },
+  "summary": "Procedural dungeon generator scaffolding present. Implementation requires deterministic RNG integration and seeded room templates.",
+  "notes": "Ensure RNG wrapper is used and seed vectors are referenced in tests."
+}

@@ -1,0 +1,9 @@
+{
+  "task": "task-006-persistence-serialization",
+  "checks": {
+    "schema_placeholders": true,
+    "serialization_tests_stub": true
+  },
+  "summary": "Persistence scaffold present; add deterministic ID + HMAC tests and save/load roundtrip unit tests during implementation.",
+  "notes": "Implement save manifest schema and unit tests for versioned migrations."
+}

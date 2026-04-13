@@ -1,0 +1,14 @@
+# Existing entries (keep) - additional Godot ignores added by task-001
+# Godot import folders and Mono
+.import/
+*.import
+.mono/
+*.mono
+# Godot editor temporary
+*.tmp
+*.log
+# Exported templates
+*.pck
+# OS files
+.DS_Store
+Thumbs.db

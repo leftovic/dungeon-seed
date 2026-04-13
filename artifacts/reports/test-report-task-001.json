@@ -1,0 +1,12 @@
+{
+  "task": "task-001-setup-godot-project",
+  "checks": {
+    "deterministic_id_exists": true,
+    "rng_wrapper_exists": true,
+    "rng_fixture_exists": true,
+    "unit_tests_present": true,
+    "headless_test_run": "manual_local_passed"
+  },
+  "summary": "Basic QA passed: scaffolding, RNG vectors, and test runner present. Headless tests were executed locally by the user and reported working.",
+  "notes": "Continue per-ticket QC (1-in/1-out, 15s stagger)."
+}

@@ -1,0 +1,9 @@
+{
+  "task": "task-003-design-core-systems",
+  "checks": {
+    "design_docs_present": true,
+    "core_systems_tickets": true
+  },
+  "summary": "Core systems design artifacts present as tickets and top-level docs. Implementation tasks remain.",
+  "notes": "Proceed to implementation tasks per reconciled tickets."
+}

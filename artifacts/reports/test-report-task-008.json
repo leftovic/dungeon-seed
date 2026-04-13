@@ -1,0 +1,9 @@
+{
+  "task": "task-008-adventurer-engine",
+  "checks": {
+    "engine_design_present": true,
+    "recruitment_skeletons": true
+  },
+  "summary": "Adventurer engine scaffolding present. Implement recruitment, persistence, and AI behavior in follow-up work.",
+  "notes": "Add unit tests for recruitment flows and stat progression." 
+}

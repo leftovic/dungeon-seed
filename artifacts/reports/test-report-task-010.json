@@ -1,0 +1,8 @@
+{
+  "task": "task-010-core-loop",
+  "checks": {
+    "orchestration_design_stub": true
+  },
+  "summary": "Core loop orchestration scaffolding present. Needs integration tests and deterministic tick sequencing tests.",
+  "notes": "Add acceptance tests ensuring tick determinism and save/load correctness."
+}

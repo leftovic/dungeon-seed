@@ -1,0 +1,10 @@
+{
+  "task": "task-004-ui-ux-framework",
+  "checks": {
+    "ui_prototypes_present": true,
+    "theme_placeholders": true
+  },
+  "summary": "UI/UX scaffolding present. Visual themes and accessible variants should be implemented in follow-up work.",
+  "notes": "Add Godot UI theme resources and focus-navigation tests.
+"
+}

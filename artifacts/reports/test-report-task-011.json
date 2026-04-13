@@ -1,0 +1,9 @@
+{
+  "task": "task-011-seed-growth-mutations",
+  "checks": {
+    "growth_model_stub": true,
+    "mutation_notes_present": true
+  },
+  "summary": "Seed growth and mutation scaffolding present. Implement deterministic mutation RNG and progression tests.",
+  "notes": "Add unit tests for mutation reproducibility and seed lineage tracking."
+}

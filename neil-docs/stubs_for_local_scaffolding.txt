@@ -1,0 +1,143 @@
+-- STUBS FOR LOCAL SCAFFOLDING (copy into proper paths after running create_stubs.ps1 or run manually)
+
+# src/gdscript/utils/deterministic_id.gd
+# GDScript: deterministic name-based UUIDv5-like using SHA256 hex (not RFC4122 binary)
+extends Node
+
+class_name DeterministicID
+
+static func canonicalize(name: String) -> String:
+    var s = name.strip_edges().to_lower()
+    s = s.replace("\n", " ").replace("\r", " ")
+    s = RegEx.new().sub(s, "\\s+", " ") if Engine.has_singleton("RegEx")
+    return s
+
+static func id_for(namespace: String, name: String) -> String:
+    var n = canonicalize(namespace)
+    var m = canonicalize(name)
+    var input = "%s:%s".format(n, m)
+    var hash = Crypto.digest(Crypto.HASH_SHA256, input.to_utf8())
+    # Return hex prefixed with ds- for Dungeon Seed
+    return "ds-" + hash.hex_encode()
+
+# src/gdscript/utils/rng_wrapper.gd
+# Simple RNG wrapper providing deterministic PRNG (Xorshift64*)
+extends Node
+
+class_name RNGWrapper
+
+var state: int = 88172645463325252 # default seed
+
+func seed(s: int) -> void:
+    state = int(s) & 0xffffffffffffffff
+    if state == 0:
+        state = 1
+
+func next_u64() -> int:
+    var x = state
+    x ^= (x << 13) & 0xffffffffffffffff
+    x ^= (x >> 7) & 0xffffffffffffffff
+    x ^= (x << 17) & 0xffffffffffffffff
+    state = x
+    return x & 0xffffffffffffffff
+
+func randf() -> float:
+    return float(next_u64() & 0xffffffff) / float(0xffffffff)
+
+# tests/unit/test_deterministic_id.gd
+extends Node
+
+func _ready():
+    var id1 = DeterministicID.id_for("DungeonSeed", "room-alpha")
+    var id2 = DeterministicID.id_for("DungeonSeed", "room-alpha")
+    assert(id1 == id2)
+    print("test_deterministic_id: PASS -> ", id1)
+    get_tree().quit()
+
+# tests/unit/test_rng_vectors.gd
+extends Node
+
+func _ready():
+    var r = RNGWrapper.new()
+    r.seed(12345)
+    var expected = ["371114445431", "..." ] # replace with real vectors generated locally
+    # quick smoke check
+    var v0 = r.next_u64()
+    assert(v0 != 0)
+    print("test_rng_vectors: PASS -> ", v0)
+    get_tree().quit()
+
+# tests/unit/test_runner.gd
+extends Node
+
+func _ready():
+    var tests = ["res://tests/unit/test_deterministic_id.gd", "res://tests/unit/test_rng_vectors.gd"]
+    for t in tests:
+        print("Running: ", t)
+        var scene = load(t).new()
+        add_child(scene)
+        # tests call get_tree().quit() when done — in headless CI run each test as separate process
+    get_tree().quit()
+
+# .github/workflows/godot-headless-tests.yml (skeleton)
+# Use GitHub Actions to run Godot headless unit tests
+name: Godot Headless Tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Godot
+        run: |
+          wget -q https://downloads.tuxfamily.org/godotengine/3.5.1/Godot_v3.5.1-stable_linux_headless.64.zip -O godot.zip
+          unzip -q godot.zip -d godot
+          ls -la godot
+      - name: Run unit tests (headless)
+        run: |
+          ./godot/Godot_v3.5.1-stable_linux_headless.64 --path . --script res://tests/unit/test_runner.gd
+
+# tools/rng/generate_vectors.py (simple generator for fixtures)
+import argparse
+import json
+
+class Xorshift64:
+    def __init__(self, seed):
+        self.x = seed & 0xffffffffffffffff
+        if self.x == 0:
+            self.x = 1
+    def next_u64(self):
+        x = self.x
+        x ^= (x << 13) & 0xffffffffffffffff
+        x ^= (x >> 7) & 0xffffffffffffffff
+        x ^= (x << 17) & 0xffffffffffffffff
+        self.x = x & 0xffffffffffffffff
+        return self.x
+
+if __name__ == '__main__':
+    p = argparse.ArgumentParser()
+    p.add_argument('--seed', type=int, default=12345)
+    p.add_argument('--count', type=int, default=10)
+    p.add_argument('--out', type=str, default='tests/fixtures/rng/seed-0001.json')
+    args = p.parse_args()
+    rng = Xorshift64(args.seed)
+    vecs = [rng.next_u64() for _ in range(args.count)]
+    with open(args.out, 'w') as f:
+        json.dump({'seed': args.seed, 'vectors': vecs}, f, indent=2)
+
+# scripts/migrations/migrate_hmac_keys.py (skeleton)
+import os
+import json
+
+DEV_KEY_PATH = 'secrets/dev_hmac_key.json'
+
+if __name__ == '__main__':
+    if not os.path.exists(DEV_KEY_PATH):
+        print('No dev key found at', DEV_KEY_PATH)
+        exit(1)
+    with open(DEV_KEY_PATH, 'r') as f:
+        k = json.load(f)
+    print('Loaded dev key, ready to migrate to KMS provider (manual step)')
+    # real migration depends on KMS vendor SDK
+
+-- END OF STUBS --

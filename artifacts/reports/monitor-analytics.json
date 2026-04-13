@@ -1,0 +1,5 @@
+{
+  "task": "monitor-analytics",
+  "status": "instrumentation_started",
+  "notes": "Telemetry event taxonomy and placeholders present. Integrate CI telemetry job and push metrics once implemented."
+}

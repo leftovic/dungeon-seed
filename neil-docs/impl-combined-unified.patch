@@ -1,0 +1,321 @@
+# Combined unified patch (concatenation of impl-task-001..impl-task-012)
+# Apply with: git apply neil-docs/impl-combined-unified.patch
+
+*** Begin Combined Patch
+
+*** PATCH: impl-task-001.patch
+***
+*** Begin Patch
+*** Update File: src/gdscript/utils/deterministic_id.gd
+@@
+-# deterministic_id.gd - placeholder
+-# Implement UUIDv5 + HMAC fallback here
+-
++# deterministic_id.gd
++# Deterministic ID generator for game objects.
++# Generates IDs with format: <epoch_ms>-<player_hex>-<counter>-<sig>
++# where sig is a truncated SHA256 hex of namespaced input for quick integrity check.
++# NOTE: For production integrity/HMAC, replace signature generation with HMAC-SHA256
++# using a secure key provided by a KMS. See neil-docs/security/HMAC-KEY-MIGRATION.md
++# for rotation and CI integration notes.
++
++extends Node
++class_name DeterministicId
++
++# Generate a deterministic ID.
++# player_id: stable player identifier (string)
++# epoch_ms: milliseconds since epoch (int)
++# counter: monotonic counter to avoid collisions for same ms (int)
++# namespace: optional additional namespace salt (string)
++func generate(player_id: String, epoch_ms: int, counter: int, namespace: String = "") -> String:
++    var input_str: String = "%d-%s-%d-%s" % [epoch_ms, player_id, counter, namespace]
++    # Compute SHA256 digest of the namespaced input
++    var hasher: HashingContext = HashingContext.new()
++    hasher.start(HashingContext.HASH_SHA256)
++    hasher.update(input_str.to_utf8())
++    var digest: PackedByteArray = hasher.finish()
++    var hex_str: String = ""
++    for b in digest:
++        hex_str += "%02x" % b
++    # Short hex for player id (first 6 chars of sha256(player_id))
++    var player_hash: String = _short_hex_from_string(player_id, 6)
++    # Truncated signature for quick integrity check (first 12 hex chars)
++    var sig: String = hex_str.substr(0, 12)
++    # zero-pad counter to 8 digits
++    var counter_str: String = "%08d" % counter
++    return "%d-%s-%s-%s" % [epoch_ms, player_hash, counter_str, sig]
++
++# Helper: produce k-length hex prefix from SHA256 of an input string
++func _short_hex_from_string(s: String, k: int = 6) -> String:
++    var hc: HashingContext = HashingContext.new()
++    hc.start(HashingContext.HASH_SHA256)
++    hc.update(s.to_utf8())
++    var d: PackedByteArray = hc.finish()
++    var h: String = ""
++    for b in d:
++        h += "%02x" % b
++    if k <= 0:
++        return h
++    return h.substr(0, k)
++
++# Placeholder HMAC integration note:
++# To switch to HMAC-SHA256, use a secure key stored in CI/secret manager and compute:
++# sig = HMAC_SHA256(key, input_str) and then hex-encode. Do NOT commit keys to the repo.
++# The HMAC key manager should live in src/Security/HmacKeyManager.gd (or equivalent service).
+*** End Patch
+
+*** PATCH: impl-task-002.patch
+***
+*** Begin Patch
+*** Update File: src/gdscript/utils/rng_wrapper.gd
+@@
+-# rng_wrapper.gd - placeholder
+-# Implement seeded RNG wrapper here
+-
++# rng_wrapper.gd
++# Simple deterministic RNG wrapper for tests and deterministic previews.
++# Uses a xorshift64* style generator implemented in pure GDScript.
++
++extends Node
++class_name RNGWrapper
++
++var _state: int = 0
++
++# Seed the RNG. Accepts integer seeds; for string seeds, use seed_from_string.
++func seed(seed_val: int) -> void:
++    _state = seed_val & 0xFFFFFFFFFFFFFFFF
++    if _state == 0:
++        _state = 0xDEADBEEFCAFEBABE
++
++# Seed from an arbitrary string by hashing to 64 bits (SHA256 and take low 64 bits)
++func seed_from_string(s: String) -> void:
++    var hc: HashingContext = HashingContext.new()
++    hc.start(HashingContext.HASH_SHA256)
++    hc.update(s.to_utf8())
++    var d: PackedByteArray = hc.finish()
++    var val: int = 0
++    for i in range(0, min(8, d.size())):
++        val = (val << 8) | int(d[i])
++    _state = val & 0xFFFFFFFFFFFFFFFF
++    if _state == 0:
++        _state = 0xFEEDFACECAFEBABE
++
++# Return next 64-bit unsigned integer
++func next_u64() -> int:
++    var x: int = _state
++    x ^= (x << 13) & 0xFFFFFFFFFFFFFFFF
++    x ^= (x >> 7)
++    x ^= (x << 17) & 0xFFFFFFFFFFFFFFFF
++    _state = x & 0xFFFFFFFFFFFFFFFF
++    # xorshift64* multiply
++    var res: int = (_state * 0x2545F4914F6CDD1D) & 0xFFFFFFFFFFFFFFFF
++    return res
++
++# Return float in [0,1)
++func randf() -> float:
++    var u: int = next_u64()
++    # Use lower 53 bits for double precision-like float
++    var frac_mask: int = (1 << 53) - 1
++    var v: int = u & frac_mask
++    return float(v) / float(frac_mask)
++
++# Return integer in [0, max)
++func randi(max_val: int) -> int:
++    if max_val <= 0:
++        return 0
++    return int(next_u64() % max_val)
+*** End Patch
+
+*** PATCH: impl-task-003.patch
+***
+*** Begin Patch
+*** Update File: tests/unit/test_deterministic_id.gd
+@@
+-# unit test placeholder for deterministic id
+-
++extends Node
++
++func _ready():
++    print("[test_deterministic_id] starting")
++    # Load the deterministic ID generator
++    var gen_script := load("res://src/gdscript/utils/deterministic_id.gd")
++    if gen_script == null:
++        push_error("Failed to load deterministic_id.gd")
++        get_tree().quit()
++    var gen = gen_script.new()
++    var id = gen.generate("player123", 1672543200000, 1, "namespace")
++    print("Generated ID:", id)
++    # Basic checks
++    if typeof(id) != TYPE_STRING:
++        push_error("ID is not a string")
++    # ensure the id contains 3 dashes (epoch, playerhex, counter, sig)
++    if id.split("-").size() < 4:
++        push_error("ID format unexpected: %s" % id)
++    # Ensure headless test exits cleanly
++    get_tree().quit()
+*** End Patch
+
+*** PATCH: impl-task-004.patch
+***
+*** Begin Patch
+*** Update File: tests/unit/test_rng_vectors.gd
+@@
+-# unit test placeholder for rng vectors
+-
++extends Node
++
++func _ready():
++    print("[test_rng_vectors] starting")
++    var rng_script := load("res://src/gdscript/utils/rng_wrapper.gd")
++    if rng_script == null:
++        push_error("Failed to load rng_wrapper.gd")
++        get_tree().quit()
++    var rng = rng_script.new()
++    rng.seed(123456789)
++    var a = rng.next_u64()
++    var b = rng.next_u64()
++    print("RNG outputs:", a, b)
++    if a == b:
++        push_error("RNG returned identical consecutive values")
++    get_tree().quit()
+*** End Patch
+
+*** PATCH: impl-task-005.patch
+***
+*** Begin Patch
+*** Update File: neil-docs/security/HMAC-KEY-MIGRATION.md
+@@
+-# HMAC key migration notes - placeholder
+-
++# HMAC Key Migration - Implementation Notes
++
++This document outlines the recommended approach to rotate HMAC keys used for deterministic ID signing and save blob integrity checks.
++
++Important:
++- Never commit real HMAC keys to source control.
++- Use a KMS or CI secret store to provide keys to test and runtime environments.
++
++High-level steps:
++1. Add new key to KMS and mark as active for verification only.
++2. Deploy services that verify signatures with both old and new keys.
++3. Re-sign records in controlled batches and verify with new key.
++4. After canary verification, remove old key from verification list.
++
++Local dev/testing:
++- Use neil-docs/security/dev-hmac-key.example as a developer-only key for unit tests and CI sample runs.
+*** End Patch
+
+*** PATCH: impl-task-006.patch
+***
+*** Begin Patch
+*** Add File: ci/godot-headless-tests.yml
+***
++# CI stub for running Godot headless tests
++# This is a placeholder that outlines the steps required.
++
++name: Godot Headless Tests (stub)
++
++on: [push, pull_request]
++
++jobs:
++  headless-tests:
++    runs-on: ubuntu-latest
++    steps:
++      - name: Checkout
++        uses: actions/checkout@v4
++      - name: Install Godot (placeholder)
++        run: echo "Install Godot and dependencies here"
++      - name: Run unit tests (placeholder)
++        run: echo "Run Godot headless unit tests (tests/unit)"
++      - name: Run reachability/perf harness (placeholder)
++        run: echo "Run reachability and performance harness for task-007"
+*** End Patch
+
+*** PATCH: impl-task-007.patch
+***
+*** Begin Patch
+*** Add File: tools/id_rekey.py
+***
++#!/usr/bin/env python3
++# id_rekey.py - placeholder
++# Script to perform re-signing of deterministic IDs during key rotation.
++# WARNING: This is a placeholder. Implement DB connections and batch processing.
++
++def main():
++    print('Run rekey operation here')
++
++if __name__ == '__main__':
++    main()
++
+*** End Patch
+
+*** PATCH: impl-task-008.patch
+***
+*** Begin Patch
+*** Add File: neil-docs/ID-MIGRATION.md
+***
++### ID Migration - Implementation Notes
++
++This document describes steps to migrate deterministic ID formats and re-key strategies.
++
++Key points:
++- When changing ID format, ensure backward compatibility by supporting legacy parsing for a transition period.
++- Re-keying: export existing signatures, verify with old key, re-sign with new key and store alongside legacy signature until rollout complete.
++- Always provide a rollback plan that preserves old signatures until new signatures are validated.
+*** End Patch
+
+*** PATCH: impl-task-009.patch
+***
+*** Begin Patch
+*** Add File: artifacts/CHANGELOG-IMPLEMENTATION.md
+***
++CHANGELOG - Implementation artifacts for Dungeon Seed epic
++
++- Populated deterministic ID generator (GDScript)
++- Seeded RNG wrapper (GDScript)
++- Unit test placeholders that exit the headless runner
++- CI workflow stub added (ci/godot-headless-tests.yml)
++- Migration placeholders for HMAC and ID migration
++
++Manual steps required:
++- Add HMAC keys to CI secret manager (do NOT commit keys)
++- Implement full reachability harness and add canonical RNG vectors
+*** End Patch
+
+*** PATCH: impl-task-010.patch
+***
+*** Begin Patch
+*** Add File: artifacts/implementation-report.json
+***
++{
++  "status": "incomplete",
++  "summary": "Placeholder; final report will be written by automation",
++  "files_created": [],
++  "notes": []
++}
++
+*** End Patch
+
+*** PATCH: impl-task-011.patch
+***
+*** Begin Patch
+*** Add File: neil-docs/README-DUNGEON-IMPLEMENTATION.md
+***
++Dungeon Seed Implementation - Notes
++
++This folder contains reconciled tickets and migration notes for the Dungeon Seed epic. Contains placeholders for HMAC key migration and ID migration.
++
++See neil-docs/implementation-plans for task-level plans and this repo's ci/godot-headless-tests.yml for CI guidance.
+*** End Patch
+
+*** PATCH: impl-task-012.patch
+***
+*** Begin Patch
+*** Update File: tests/unit/test_runner.gd
+@@
+-extends SceneTree
++# Test runner that loads unit test scenes and ensures headless exit
++extends SceneTree
+*** End Patch
+
+*** End Combined Patch

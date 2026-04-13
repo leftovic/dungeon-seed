@@ -1,0 +1,702 @@
+{
+  "generated": "2026-04-12",
+  "totalIncludingDeprecated": 89,
+  "categories": {
+    "pipeline-infra": "Orchestration infrastructure reused from CGS",
+    "meta": "Self-referential agents (agent creation, tool building)",
+    "form-sculptor": "Entity/form specialists — anatomy and structure across ALL media formats (2D/3D/VR/iso)",
+    "asset-creation": "Assembly agents — sprite sheets, animation, scenes, tilemaps, audio, VFX",
+    "deprecated": "Superseded agents kept for reference",
+    "implementation": "Code-writing agents — GDScript, AI, combat, dialogue, UI, HUD, camera, cinematics",
+    "media-pipeline": "Format specialists — technical toolchains for 2D, 3D, VR, and texture output",
+    "quality": "Testing, balancing, auditing, accessibility, performance, security",
+    "game-trope": "Optional addon modules — common game mechanics (crafting, fishing, housing, etc.)",
+    "vision": "Pre-production design agents — GDD, story, characters, world, economy, art style, audio",
+    "technical": "Architecture and engine decisions",
+    "ship-distribute": "Distribution, deployment, store submission, live ops, patches, analytics"
+  },
+  "project": "game-dev",
+  "agents": [
+    {
+      "id": "2d-asset-renderer",
+      "name": "2D Asset Renderer",
+      "category": "media-pipeline",
+      "size": "100KB",
+      "status": "created"
+    },
+    {
+      "id": "3d-asset-pipeline-specialist",
+      "name": "3D Asset Pipeline Specialist",
+      "category": "media-pipeline",
+      "size": "96KB",
+      "status": "created"
+    },
+    {
+      "id": "accessibility-auditor",
+      "name": "Accessibility Auditor",
+      "category": "quality",
+      "size": "42KB",
+      "status": "created"
+    },
+    {
+      "id": "achievement-trophy-system-builder",
+      "name": "Achievement & Trophy System Builder",
+      "category": "game-trope",
+      "size": "106KB",
+      "status": "created"
+    },
+    {
+      "id": "agent-creation-agent",
+      "name": "Agent Creation Agent",
+      "category": "meta",
+      "size": "8KB",
+      "status": "created"
+    },
+    {
+      "id": "ai-behavior-designer",
+      "name": "AI Behavior Designer",
+      "category": "implementation",
+      "size": "60KB",
+      "status": "created"
+    },
+    {
+      "id": "animation-sequencer",
+      "name": "Animation Sequencer",
+      "category": "asset-creation",
+      "size": "99KB",
+      "status": "created"
+    },
+    {
+      "id": "aquatic-marine-entity-sculptor",
+      "name": "Aquatic & Marine Entity Sculptor",
+      "category": "form-sculptor",
+      "size": "73KB",
+      "status": "created"
+    },
+    {
+      "id": "architecture-interior-sculptor",
+      "name": "Architecture & Interior Sculptor",
+      "category": "form-sculptor",
+      "size": "95KB",
+      "status": "created"
+    },
+    {
+      "id": "audio-composer",
+      "name": "Audio Composer",
+      "category": "asset-creation",
+      "size": "56KB",
+      "status": "created"
+    },
+    {
+      "id": "balance-auditor",
+      "name": "Balance Auditor",
+      "category": "quality",
+      "size": "42KB",
+      "status": "created"
+    },
+    {
+      "id": "beast-creature-sculptor",
+      "name": "Beast & Creature Sculptor",
+      "category": "form-sculptor",
+      "size": "88KB",
+      "status": "created"
+    },
+    {
+      "id": "camera-system-architect",
+      "name": "Camera System Architect",
+      "category": "implementation",
+      "size": "60KB",
+      "status": "created"
+    },
+    {
+      "id": "character-customization-builder",
+      "name": "Character Customization Builder",
+      "category": "game-trope",
+      "size": "94KB",
+      "status": "created"
+    },
+    {
+      "id": "character-designer",
+      "name": "Character Designer",
+      "category": "vision",
+      "size": "41KB",
+      "status": "created"
+    },
+    {
+      "id": "cinematic-director",
+      "name": "Cinematic Director",
+      "category": "implementation",
+      "size": "72KB",
+      "status": "created"
+    },
+    {
+      "id": "code-style-enforcer",
+      "name": "Code Style Enforcer",
+      "category": "quality",
+      "size": "35KB",
+      "status": "created"
+    },
+    {
+      "id": "combat-system-builder",
+      "name": "Combat System Builder",
+      "category": "implementation",
+      "size": "73KB",
+      "status": "created"
+    },
+    {
+      "id": "compliance-officer",
+      "name": "Compliance Officer",
+      "category": "ship-distribute",
+      "size": "43KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "cooking-alchemy-system-builder",
+      "name": "Cooking & Alchemy System Builder",
+      "category": "game-trope",
+      "size": "95KB",
+      "status": "created"
+    },
+    {
+      "id": "cost-optimizer",
+      "name": "Cost Optimizer",
+      "category": "ship-distribute",
+      "size": "40KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "crafting-system-builder",
+      "name": "Crafting System Builder",
+      "category": "game-trope",
+      "size": "110KB",
+      "status": "created"
+    },
+    {
+      "id": "customer-feedback-synthesizer",
+      "name": "Customer Feedback Synthesizer",
+      "category": "ship-distribute",
+      "size": "41KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "demo-showcase-builder",
+      "name": "Demo & Showcase Builder",
+      "category": "ship-distribute",
+      "size": "23KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "deployment-strategist",
+      "name": "Deployment Strategist",
+      "category": "ship-distribute",
+      "size": "21KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "dialogue-engine-builder",
+      "name": "Dialogue Engine Builder",
+      "category": "implementation",
+      "size": "61KB",
+      "status": "created"
+    },
+    {
+      "id": "documentation-writer",
+      "name": "Documentation Writer",
+      "category": "pipeline-infra",
+      "size": "28KB",
+      "status": "created"
+    },
+    {
+      "id": "eldritch-horror-entity-sculptor",
+      "name": "Eldritch Horror Entity Sculptor",
+      "category": "form-sculptor",
+      "size": "83KB",
+      "status": "created"
+    },
+    {
+      "id": "enterprise-ticket-writer",
+      "name": "Enterprise Ticket Writer",
+      "category": "pipeline-infra",
+      "size": "40KB",
+      "status": "created"
+    },
+    {
+      "id": "farming-harvest-specialist",
+      "name": "Farming & Harvest Specialist",
+      "category": "game-trope",
+      "size": "96KB",
+      "status": "created"
+    },
+    {
+      "id": "fishing-system-designer",
+      "name": "Fishing System Designer",
+      "category": "game-trope",
+      "size": "91KB",
+      "status": "created"
+    },
+    {
+      "id": "flora-organic-sculptor",
+      "name": "Flora & Organic Sculptor",
+      "category": "form-sculptor",
+      "size": "96KB",
+      "status": "created"
+    },
+    {
+      "id": "game-analytics-designer",
+      "name": "Game Analytics Designer",
+      "category": "ship-distribute",
+      "size": "89KB",
+      "status": "created"
+    },
+    {
+      "id": "game-architecture-planner",
+      "name": "Game Architecture Planner",
+      "category": "technical",
+      "size": "42KB",
+      "status": "created"
+    },
+    {
+      "id": "game-art-director",
+      "name": "Game Art Director",
+      "category": "vision",
+      "size": "53KB",
+      "status": "created"
+    },
+    {
+      "id": "game-audio-director",
+      "name": "Game Audio Director",
+      "category": "vision",
+      "size": "39KB",
+      "status": "created"
+    },
+    {
+      "id": "game-build-packaging-specialist",
+      "name": "Game Build & Packaging Specialist",
+      "category": "ship-distribute",
+      "size": "58KB",
+      "status": "created"
+    },
+    {
+      "id": "game-code-executor",
+      "name": "Game Code Executor",
+      "category": "implementation",
+      "size": "51KB",
+      "status": "created"
+    },
+    {
+      "id": "game-economist",
+      "name": "Game Economist",
+      "category": "vision",
+      "size": "44KB",
+      "status": "created"
+    },
+    {
+      "id": "game-hud-engineer",
+      "name": "Game HUD Engineer",
+      "category": "implementation",
+      "size": "92KB",
+      "status": "created"
+    },
+    {
+      "id": "game-orchestrator",
+      "name": "Game Orchestrator",
+      "category": "ship-distribute",
+      "size": "77KB",
+      "status": "created"
+    },
+    {
+      "id": "game-ticket-writer",
+      "name": "Game Ticket Writer",
+      "category": "ship-distribute",
+      "size": "61KB",
+      "status": "created"
+    },
+    {
+      "id": "game-ui-designer",
+      "name": "Game UI Designer",
+      "category": "implementation",
+      "size": "90KB",
+      "status": "created"
+    },
+    {
+      "id": "game-ui-hud-builder",
+      "name": "Game UI HUD Builder",
+      "category": "deprecated",
+      "size": "65KB",
+      "status": "deprecated"
+    },
+    {
+      "id": "game-vision-architect",
+      "name": "Game Vision Architect",
+      "category": "vision",
+      "size": "55KB",
+      "status": "created"
+    },
+    {
+      "id": "guild-social-system-builder",
+      "name": "Guild & Social System Builder",
+      "category": "game-trope",
+      "size": "90KB",
+      "status": "created"
+    },
+    {
+      "id": "housing-base-building-designer",
+      "name": "Housing & Base Building Designer",
+      "category": "game-trope",
+      "size": "76KB",
+      "status": "created"
+    },
+    {
+      "id": "humanoid-character-sculptor",
+      "name": "Humanoid Character Sculptor",
+      "category": "form-sculptor",
+      "size": "95KB",
+      "status": "created"
+    },
+    {
+      "id": "implementation-plan-builder",
+      "name": "Implementation Plan Builder",
+      "category": "pipeline-infra",
+      "size": "33KB",
+      "status": "created"
+    },
+    {
+      "id": "incident-response-planner",
+      "name": "Incident Response Planner",
+      "category": "ship-distribute",
+      "size": "34KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "live-ops-designer",
+      "name": "Live Ops Designer",
+      "category": "ship-distribute",
+      "size": "74KB",
+      "status": "created"
+    },
+    {
+      "id": "localization-manager",
+      "name": "Localization Manager",
+      "category": "ship-distribute",
+      "size": "38KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "mechanical-construct-sculptor",
+      "name": "Mechanical & Construct Sculptor",
+      "category": "form-sculptor",
+      "size": "62KB",
+      "status": "created"
+    },
+    {
+      "id": "minigame-framework-builder",
+      "name": "Minigame Framework Builder",
+      "category": "game-trope",
+      "size": "91KB",
+      "status": "created"
+    },
+    {
+      "id": "mount-vehicle-system-builder",
+      "name": "Mount & Vehicle System Builder",
+      "category": "game-trope",
+      "size": "85KB",
+      "status": "created"
+    },
+    {
+      "id": "multiplayer-network-builder",
+      "name": "Multiplayer Network Builder",
+      "category": "implementation",
+      "size": "69KB",
+      "status": "created"
+    },
+    {
+      "id": "mythic-divine-entity-sculptor",
+      "name": "Mythic & Divine Entity Sculptor",
+      "category": "form-sculptor",
+      "size": "67KB",
+      "status": "created"
+    },
+    {
+      "id": "narrative-designer",
+      "name": "Narrative Designer",
+      "category": "vision",
+      "size": "36KB",
+      "status": "created"
+    },
+    {
+      "id": "patch-update-manager",
+      "name": "Patch & Update Manager",
+      "category": "ship-distribute",
+      "size": "64KB",
+      "status": "created"
+    },
+    {
+      "id": "performance-engineer",
+      "name": "Performance Engineer",
+      "category": "quality",
+      "size": "27KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "pet-companion-system-builder",
+      "name": "Pet Companion System Builder",
+      "category": "game-trope",
+      "size": "60KB",
+      "status": "created"
+    },
+    {
+      "id": "photo-mode-designer",
+      "name": "Photo Mode Designer",
+      "category": "game-trope",
+      "size": "79KB",
+      "status": "created"
+    },
+    {
+      "id": "playtest-simulator",
+      "name": "Playtest Simulator",
+      "category": "quality",
+      "size": "72KB",
+      "status": "created"
+    },
+    {
+      "id": "procedural-asset-generator",
+      "name": "Procedural Asset Generator",
+      "category": "asset-creation",
+      "size": "52KB",
+      "status": "created"
+    },
+    {
+      "id": "procedural-quest-generator",
+      "name": "Procedural Quest Generator",
+      "category": "game-trope",
+      "size": "80KB",
+      "status": "created"
+    },
+    {
+      "id": "quality-gate-reviewer",
+      "name": "Quality Gate Reviewer",
+      "category": "quality",
+      "size": "19KB",
+      "status": "created"
+    },
+    {
+      "id": "reconciliation-specialist",
+      "name": "Reconciliation Specialist",
+      "category": "pipeline-infra",
+      "size": "26KB",
+      "status": "created"
+    },
+    {
+      "id": "relationship-romance-builder",
+      "name": "Relationship & Romance Builder",
+      "category": "game-trope",
+      "size": "109KB",
+      "status": "created"
+    },
+    {
+      "id": "release-manager",
+      "name": "Release Manager",
+      "category": "ship-distribute",
+      "size": "30KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "scene-compositor",
+      "name": "Scene Compositor",
+      "category": "asset-creation",
+      "size": "56KB",
+      "status": "created"
+    },
+    {
+      "id": "security-auditor",
+      "name": "Security Auditor",
+      "category": "quality",
+      "size": "33KB",
+      "status": "cloned-from-enterprise"
+    },
+    {
+      "id": "sprite-animation-generator",
+      "name": "Sprite Animation Generator",
+      "category": "deprecated",
+      "size": "84KB",
+      "status": "deprecated"
+    },
+    {
+      "id": "sprite-sheet-generator",
+      "name": "Sprite Sheet Generator",
+      "category": "asset-creation",
+      "size": "97KB",
+      "status": "created"
+    },
+    {
+      "id": "store-submission-specialist",
+      "name": "Store Submission Specialist",
+      "category": "ship-distribute",
+      "size": "63KB",
+      "status": "created"
+    },
+    {
+      "id": "survival-mechanics-designer",
+      "name": "Survival Mechanics Designer",
+      "category": "game-trope",
+      "size": "93KB",
+      "status": "created"
+    },
+    {
+      "id": "taming-breeding-specialist",
+      "name": "Taming & Breeding Specialist",
+      "category": "game-trope",
+      "size": "100KB",
+      "status": "created"
+    },
+    {
+      "id": "terrain-environment-sculptor",
+      "name": "Terrain & Environment Sculptor",
+      "category": "form-sculptor",
+      "stream": "visual",
+      "size": "118KB",
+      "file": ".github/agents/Terrain & Environment Sculptor.agent.md",
+      "status": "created",
+      "description": "Geological sculptor and atmospheric painter — heightmap generation with multi-pass erosion simulation (hydraulic, thermal, wind, glacial), cave systems (cellular automata + worm tunnels), water bodies (flow simulation rivers, basin detection lakes, wave-sculpted coastlines), splatmap terrain painting, chunked LOD mesh export, skybox/weather/atmosphere generation, collision heightfields, navigation meshes, and sound propagation zones.",
+      "mediaFormats": [
+        "2D",
+        "3D",
+        "VR",
+        "iso"
+      ],
+      "inputs": [
+        "style-guide.json",
+        "color-palette.json",
+        "WORLD-MAP.json",
+        "biome-definitions.json",
+        "CLIMATE-SYSTEM.json",
+        "SCENE-COMPOSITOR-HANDOFF.json",
+        "ASSET-MANIFEST.json",
+        "REGION-PROFILE.json"
+      ],
+      "outputs": [
+        "terrain/heightmaps/**/*.png",
+        "terrain/chunks/**/*.glb",
+        "terrain/splatmaps/**/*.png",
+        "terrain/caves/**/*.json",
+        "terrain/water/**/*.json",
+        "terrain/collision/**/*.bin",
+        "terrain/navmesh/**/*.tres",
+        "terrain/minimap/**/*.png",
+        "terrain/audio-tags/**/*.json",
+        "terrain/audio-zones/**/*.json",
+        "atmosphere/skyboxes/**/*",
+        "atmosphere/weather/**/*.json",
+        "shaders/atmosphere/**/*.gdshader",
+        "scripts/terrain/**/*.py",
+        "TERRAIN-MANIFEST.json",
+        "TERRAIN-QUALITY-REPORT.json"
+      ],
+      "upstream": [
+        "game-art-director",
+        "world-cartographer",
+        "procedural-asset-generator",
+        "scene-compositor",
+        "narrative-designer"
+      ],
+      "downstream": [
+        "flora-organic-sculptor",
+        "scene-compositor",
+        "vfx-designer",
+        "game-audio-director",
+        "game-code-executor",
+        "tilemap-level-designer",
+        "playtest-simulator",
+        "ai-behavior-designer",
+        "architecture-interior-sculptor",
+        "aquatic-marine-entity-sculptor"
+      ]
+    },
+    {
+      "id": "texture-material-artist",
+      "name": "Texture & Material Artist",
+      "category": "media-pipeline",
+      "size": "86KB",
+      "status": "created"
+    },
+    {
+      "id": "the-aggregator",
+      "name": "The Aggregator",
+      "category": "pipeline-infra",
+      "size": "36KB",
+      "status": "created"
+    },
+    {
+      "id": "the-artificer",
+      "name": "The Artificer",
+      "category": "pipeline-infra",
+      "size": "16KB",
+      "status": "created"
+    },
+    {
+      "id": "the-decomposer",
+      "name": "The Decomposer",
+      "category": "pipeline-infra",
+      "size": "16KB",
+      "status": "created"
+    },
+    {
+      "id": "tilemap-level-designer",
+      "name": "Tilemap Level Designer",
+      "category": "asset-creation",
+      "size": "50KB",
+      "status": "created"
+    },
+    {
+      "id": "trading-economy-builder",
+      "name": "Trading & Economy Builder",
+      "category": "game-trope",
+      "size": "88KB",
+      "status": "created"
+    },
+    {
+      "id": "undead-spectral-entity-sculptor",
+      "name": "Undead & Spectral Entity Sculptor",
+      "category": "form-sculptor",
+      "size": "82KB",
+      "status": "created"
+    },
+    {
+      "id": "vfx-designer",
+      "name": "VFX Designer",
+      "category": "asset-creation",
+      "size": "51KB",
+      "status": "created"
+    },
+    {
+      "id": "vr-xr-asset-optimizer",
+      "name": "VR XR Asset Optimizer",
+      "category": "media-pipeline",
+      "size": "110KB",
+      "status": "created"
+    },
+    {
+      "id": "weapon-equipment-forger",
+      "name": "Weapon & Equipment Forger",
+      "category": "form-sculptor",
+      "size": "91KB",
+      "status": "created"
+    },
+    {
+      "id": "weather-day-night-cycle-designer",
+      "name": "Weather & Day-Night Cycle Designer",
+      "category": "game-trope",
+      "size": "105KB",
+      "status": "created"
+    },
+    {
+      "id": "world-cartographer",
+      "name": "World Cartographer",
+      "category": "vision",
+      "size": "37KB",
+      "status": "created"
+    }
+  ],
+  "schema": "game-dev-agent-registry-v3",
+  "totalActive": 87
+}

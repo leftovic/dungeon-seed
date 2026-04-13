@@ -1,0 +1,10 @@
+{
+  "task": "task-002-define-domain-models",
+  "checks": {
+    "save_contracts_doc_exists": true,
+    "id_namespace_spec_present": true,
+    "schema_placeholders": true
+  },
+  "summary": "Domain model scaffolding and schema placeholders present. Needs detailed schema and contract completion in implementation phase.",
+  "notes": "Ensure save-manifest.schema.json is populated and unit tests for serialization are added.">
+}

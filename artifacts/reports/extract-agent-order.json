@@ -1,0 +1,5 @@
+{
+  "task": "extract-agent-order",
+  "order": ["Game Ticket Writer","Reconciliation Specialist","Quality Gate Reviewer","Implementation Plan Builder","Game Code Executor","Quality Gate Reviewer","Patch & Update Manager"],
+  "notes": "Agent order extracted from earlier sessions and applied to conveyor."
+}
