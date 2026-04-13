@@ -1,0 +1,98 @@
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2641)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2419)
+ERROR: Cannot get path of node as it is not in a scene tree.
+   at: get_path (scene/main/node.cpp:2419)
+ERROR: 2 resources still in use at exit.
+   at: clear (core/io/resource.cpp:805)

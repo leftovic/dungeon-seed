@@ -17,5 +17,6 @@ func _ready():
 	if id.split("-").size() < 4:
 		push_error("ID format unexpected: %s" % id)
 	# Ensure headless test exits cleanly
+	gen.free()
 	get_tree().quit()
-\n
+

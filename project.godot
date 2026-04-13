@@ -1,0 +1,11 @@
+[gd_resource type="EditorSettings" load_steps=2 format=3]
+
+[application]
+config/name="Dungeon Seed"
+config/description="Minimal project file for headless tests"
+config/author="Dev Team"
+run/main_scene="res://tests/unit/test_runner.tscn"
+
+[rendering]
+use_vsync=false
+run/main_scene="res://tests/unit/test_runner.tscn"

@@ -9,7 +9,7 @@ var _state: int = 0
 
 # Seed the RNG. Accepts integer seeds; for string seeds, use seed_from_string.
 func seed(seed_val: int) -> void:
-	_state = seed_val & 0xFFFFFFFFFFFFFFFF
+	_state = seed_val & 0x7FFFFFFFFFFFFFFF
 	if _state == 0:
 		_state = 0xDEADBEEFCAFEBABE
 
@@ -22,19 +22,20 @@ func seed_from_string(s: String) -> void:
 	var val: int = 0
 	for i in range(0, min(8, d.size())):
 		val = (val << 8) | int(d[i])
-	_state = val & 0xFFFFFFFFFFFFFFFF
+	_state = val & 0x7FFFFFFFFFFFFFFF
 	if _state == 0:
 		_state = 0xFEEDFACECAFEBABE
 
 # Return next 64-bit unsigned integer
 func next_u64() -> int:
 	var x: int = _state
-	x ^= (x << 13) & 0xFFFFFFFFFFFFFFFF
+	x ^= (x << 13) & 0x7FFFFFFFFFFFFFFF
 	x ^= (x >> 7)
-	x ^= (x << 17) & 0xFFFFFFFFFFFFFFFF
-	_state = x & 0xFFFFFFFFFFFFFFFF
+	x ^= (x << 17) & 0x7FFFFFFFFFFFFFFF
+	_state = x & 0x7FFFFFFFFFFFFFFF
 	# xorshift64* multiply
-	var res: int = (_state * 0x2545F4914F6CDD1D) & 0xFFFFFFFFFFFFFFFF
+	var res: int = (_state * 0x2545F4914F6CDD1D) & 0x7FFFFFFFFFFFFFFF
+	# ensure result fits signed 63-bit
 	return res
 
 # Return float in [0,1)

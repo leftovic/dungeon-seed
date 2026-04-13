@@ -13,5 +13,6 @@ func _ready():
 	print("RNG outputs:", a, b)
 	if a == b:
 		push_error("RNG returned identical consecutive values")
+	rng.free()
 	get_tree().quit()
-\n
+

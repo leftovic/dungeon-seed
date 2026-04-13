@@ -4,11 +4,11 @@
 extends Node
 class_name DeterministicIdImpl
 
-func generate(player_id: String, epoch_ms: int, counter: int, namespace: String = "") -> String:
-	var input_str := "%d-%s-%d-%s" % [epoch_ms, player_id, counter, namespace]
+func generate(player_id: String, epoch_ms: int, counter: int, ns: String = "") -> String:
+	var input_str := "%d-%s-%d-%s" % [epoch_ms, player_id, counter, ns]
 	var hc := HashingContext.new()
 	hc.start(HashingContext.HASH_SHA256)
-	hc.update(input_str.to_utf8())
+	hc.update(input_str.to_utf8_buffer())
 	var d := hc.finish()
 	var hex_str := ""
 	for b in d:

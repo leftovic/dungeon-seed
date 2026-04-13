@@ -1,0 +1,4 @@
+SCRIPT ERROR: Parse Error: Function "quit()" not found in base self.
+   at: GDScript::reload (res://tests/unit/test_runner.gd:14)
+ERROR: Failed to load script "res://tests/unit/test_runner.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)

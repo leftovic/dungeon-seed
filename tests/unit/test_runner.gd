@@ -1,5 +1,5 @@
 # Test runner that loads unit test scenes and ensures headless exit
-extends SceneTree
+extends Node
 
 func _ready():
     call_deferred("_run_tests")
@@ -9,6 +9,6 @@ func _run_tests():
     for t in tests:
         print("Running: ", t)
         var scene = load(t).new()
-        get_root().add_child(scene)
+        add_child(scene)
     # If tests don't quit themselves, quit now
-    quit()
+    get_tree().quit()

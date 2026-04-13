@@ -1,0 +1,120 @@
+SCRIPT ERROR: Parse Error: Cannot find member "to_utf8" in base "String".
+   at: GDScript::reload (res://src/gdscript/utils/deterministic_id_impl.gd:11)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_deterministic_id.gd:6)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+SCRIPT ERROR: Parse Error: Function "to_utf8()" not found in base String. Did you mean to use "to_utf8_buffer()"?
+   at: GDScript::reload (res://src/gdscript/utils/deterministic_id_impl.gd:11)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_deterministic_id.gd:6)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Failed to load script "res://src/gdscript/utils/deterministic_id_impl.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_deterministic_id.gd:6)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _ready (res://tests/unit/test_deterministic_id.gd:10)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_deterministic_id.gd:10)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xDEADBEEFCAFEBABE as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFEEDFACECAFEBABE as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xDEADBEEFCAFEBABE as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFEEDFACECAFEBABE as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Cannot represent 0xFFFFFFFFFFFFFFFF as a 64-bit signed integer, since the value is too large.
+   at: hex_to_int (core/string/ustring.cpp:2207)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+SCRIPT ERROR: Parse Error: Cannot find member "to_utf8" in base "String".
+   at: GDScript::reload (res://src/gdscript/utils/rng_wrapper_impl.gd:17)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+SCRIPT ERROR: Parse Error: Function "to_utf8()" not found in base String. Did you mean to use "to_utf8_buffer()"?
+   at: GDScript::reload (res://src/gdscript/utils/rng_wrapper_impl.gd:17)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Failed to load script "res://src/gdscript/utils/rng_wrapper_impl.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:5)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _ready (res://tests/unit/test_rng_vectors.gd:9)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_rng_vectors.gd:9)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)

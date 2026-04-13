@@ -1,0 +1,27 @@
+SCRIPT ERROR: Parse Error: Expected parameter name.
+   at: GDScript::reload (res://src/gdscript/utils/deterministic_id_impl.gd:7)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_deterministic_id.gd:6)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+ERROR: Failed to load script "res://src/gdscript/utils/deterministic_id_impl.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_deterministic_id.gd:6)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _ready (res://tests/unit/test_deterministic_id.gd:10)
+   GDScript backtrace (most recent call first):
+       [0] _ready (res://tests/unit/test_deterministic_id.gd:10)
+       [1] _run_tests (res://tests/unit/test_runner.gd:12)
+SCRIPT ERROR: Parse Error: Expected new line after "\".
+   at: GDScript::reload (res://tests/unit/test_rng_vectors.gd:17)
+   GDScript backtrace (most recent call first):
+       [0] _run_tests (res://tests/unit/test_runner.gd:11)
+ERROR: Failed to load script "res://tests/unit/test_rng_vectors.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+   GDScript backtrace (most recent call first):
+       [0] _run_tests (res://tests/unit/test_runner.gd:11)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _run_tests (res://tests/unit/test_runner.gd:11)
+   GDScript backtrace (most recent call first):
+       [0] _run_tests (res://tests/unit/test_runner.gd:11)

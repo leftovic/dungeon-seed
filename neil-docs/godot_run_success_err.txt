@@ -1,0 +1,12 @@
+SCRIPT ERROR: Parse Error: Expected new line after "\".
+   at: GDScript::reload (res://tests/unit/test_deterministic_id.gd:21)
+   GDScript backtrace (most recent call first):
+       [0] _run_tests (res://tests/unit/test_runner.gd:11)
+ERROR: Failed to load script "res://tests/unit/test_deterministic_id.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+   GDScript backtrace (most recent call first):
+       [0] _run_tests (res://tests/unit/test_runner.gd:11)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _run_tests (res://tests/unit/test_runner.gd:11)
+   GDScript backtrace (most recent call first):
+       [0] _run_tests (res://tests/unit/test_runner.gd:11)
