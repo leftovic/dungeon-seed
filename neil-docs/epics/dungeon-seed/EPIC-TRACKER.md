@@ -1,79 +1,112 @@
 # Epic: Dungeon Seed
 
-> **Status**: In Progress
-> **Created**: 2026-04-12
-> **Priority**: P2
-> **Total Tasks**: 12
-> **Complexity**: 96
+> **Status**: 🟢 IN PROGRESS — Pipeline v2 executing  
+> **Created**: 2026-04-12  
+> **Updated**: 2026-04-14  
+> **Priority**: P2  
+> **Total Tasks**: 22 (DECOMPOSITION-v2)  
+> **Total Points**: 152  
+> **Waves**: 6  
+> **Pipeline Rulebook**: [GAME-DEV-PIPELINE.md](./GAME-DEV-PIPELINE.md)
 
-## Task Dependency Graph
+## Pipeline Status
 
-Task 1 (Project, 5pts) ──→ Task 2 (Models, 5pts) ──→ Task 6 (Persistence, 8pts) ──→ Task 10 (Loop, 13pts) ──→ Task 12 (UI/Render MVP, 5pts)
-                       ╲                             ╱
-                        → Task 3 (Design, 8pts) ──→ Task 7 (Dungeon Gen, 13pts) ──┐
-                       ╱                             ╲                       │
-Task 4 (UI/Theme, 5pts) ──────────────────────────────→ Task 12 (UI/Render MVP, 5pts) │
-                       ╱                                                     │
-Task 5 (Audio/Lore, 5pts) ───────────────────────────────────────────────────────┘
+### v2 Pipeline (Current)
+- ✅ Game Vision Architect → GDD-v2.md, GDD-v3.md
+- ✅ The Decomposer → DECOMPOSITION-v2.md (22 tasks, 6 waves, 152pts)
+- ✅ Game Ticket Writer → TASK-001 through TASK-014 tickets
+- ✅ Implementation Plan Builder → TASK-001 through TASK-014 plans
+- ✅ **Wave 1 complete** — Bootstrap, RNG, Enums & GameConfig (TASK-001/002/003)
+- ✅ **Wave 2 complete** — Data Models, Economy, Save Service (TASK-004 through TASK-009)
+- 🟡 Wave 3 next — Generators & Managers (TASK-010 through TASK-014)
 
-Task 3 (Design, 8pts) ──→ Task 8 (Adventurer, 13pts) ──→
-                                                  ╲
-                                                   → Task 10 (Loop, 13pts)
-                                                  ╱
-Task 3 (Design, 8pts) ──→ Task 9 (Loot, 8pts) ──────┘
+### Pre-Pipeline Code (Legacy)
+Existing code at `src/gdscript/` and `tests/unit/` was written without specialist oversight (sessions 1-9).
+Code review found 3 critical bugs. Gap analysis found ~40% GDD coverage.
+This code is NOT trusted. Clean v2 code lives in `src/models/`, `src/services/`, `tests/models/`, `tests/services/`.
 
-Task 7 (Dungeon Gen, 13pts) ──→ Task 11 (Growth/Progression, 13pts) ──→ Task 12 (UI/Render MVP, 5pts)
-Task 8 (Adventurer, 13pts) ──┘
-Task 9 (Loot, 8pts) ─────────┘
+## 🔴 Pipeline Rule
 
-## Task Registry
+**ALL work MUST be produced by specialist subagents via `task()` calls.**  
+The orchestrator delegates only — never writes code, tickets, plans, or assets directly.  
+See GAME-DEV-PIPELINE.md for the full agent-to-stage mapping.
 
-| # | Task Name | Complexity | Dependencies | Ticket | Plan | Status | QA | Audit | Bugs | Loops |
-|---|-----------|-----------|-------------|--------|------|--------|----|-------|------|-------|
-| 1 | Set up Godot project with basic scenes | 5 | None | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 2 | Define domain models, save contracts, and progression schemas | 5 | Task 1 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 3 | Design core gameplay systems | 8 | Task 1 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 4 | Design UI/UX framework and visual themes | 5 | Task 1 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 5 | Define audio and lore foundation | 5 | Task 1 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 6 | Implement persistence and state serialization | 8 | Tasks 1,2 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 7 | Implement procedural dungeon generator and room templates | 13 | Tasks 2,3 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 8 | Implement adventurer management and recruitment engine | 13 | Tasks 2,3 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 9 | Implement loot economy and reward systems | 8 | Tasks 2,3 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 10 | Build core game loop orchestration | 13 | Tasks 6,7,8,9 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 11 | Implement seed growth, mutation, progression, and unlocks | 13 | Tasks 7,8,9 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
-| 12 | Build planting/dispatch UI, dungeon rendering integration, and MVP polish | 5 | Tasks 4,7,10,11 | ⬜ | ⬜ | ⬜ Not Started | ⬜ Pending | ⬜ Pending | — | — |
+## Task Registry (v2 Decomposition)
 
-*QA column shows: ⬜ Pending | ✅ All Pass (pass/total) | 🐛 N bugs (pass/total) | ⬜ N/A (no UI/opted out)*
+### Wave 1 — Foundation ✅
+| # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
+|---|-----------|-----|-------------|--------|------|------|-------|
+| 001 | Project Bootstrap | 3 | None | ✅ | ✅ | ✅ | ✅ |
+| 002 | Deterministic RNG | 5 | TASK-001 | ✅ | ✅ | ✅ | ✅ |
+| 003 | Enums & GameConfig | 5 | TASK-001 | ✅ | ✅ | ✅ | ✅ |
 
-## Artifact Paths
+### Wave 2 — Data Models ✅
+| # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
+|---|-----------|-----|-------------|--------|------|------|-------|
+| 004 | Seed Data Model | 8 | TASK-003 | ✅ | ✅ | ✅ | ✅ PASS |
+| 005 | Dungeon Room Graph | 5 | TASK-003 | ✅ | ✅ | ✅ | ✅ PASS (79 tests) |
+| 006 | Adventurer Model | 5 | TASK-003 | ✅ | ✅ | ✅ | ✅ PASS (100+ tests) |
+| 007 | Item/Equipment/Inventory | 5 | TASK-003 | ✅ | ✅ | ✅ | ✅ PASS (145+ tests) |
+| 008 | Economy Wallet & Ledger | 5 | TASK-003 | ✅ | ✅ | ✅ | ✅ PASS (115+ tests) |
+| 009 | Save/Load Manager | 8 | TASK-003 | ✅ | ✅ | ✅ | ✅ PASS (52 tests) |
+
+### Wave 3 — Generators & Managers 🟡
+| # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
+|---|-----------|-----|-------------|--------|------|------|-------|
+| 010 | Dungeon Generator | 13 | TASK-004,005 | ✅ | ✅ | ⬜ | ⬜ |
+| 011 | Loot Table Engine | 8 | TASK-007,008 | ✅ | ✅ | ⬜ | ⬜ |
+| 012 | Seed Grove Manager | 8 | TASK-004 | ✅ | ✅ | ⬜ | ⬜ |
+| 013 | Adventurer Roster | 8 | TASK-006 | ✅ | ✅ | ⬜ | ⬜ |
+| 014 | Equipment System | 5 | TASK-006,007 | ✅ | ✅ | ⬜ | ⬜ |
+
+### Wave 4 — Core Loop ⬜
+| # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
+|---|-----------|-----|-------------|--------|------|------|-------|
+| 015 | Expedition Runner | 13 | TASK-010,011,013,014 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 016 | Core Loop Orchestrator | 8 | TASK-012,015 | ⬜ | ⬜ | ⬜ | ⬜ |
+
+### Wave 5 — UI & Presentation ⬜
+| # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
+|---|-----------|-----|-------------|--------|------|------|-------|
+| 017 | Grove UI | 5 | TASK-012,016 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 018 | Expedition UI | 5 | TASK-015,016 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 019 | Inventory & Equipment UI | 5 | TASK-007,014 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 020 | HUD & Notifications | 5 | TASK-016 | ⬜ | ⬜ | ⬜ | ⬜ |
+
+### Wave 6 — Integration & Polish ⬜
+| # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
+|---|-----------|-----|-------------|--------|------|------|-------|
+| 021 | Scene Router & Flow | 5 | TASK-017,018,019,020 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 022 | MVP Integration & Polish | 8 | TASK-021 | ⬜ | ⬜ | ⬜ | ⬜ |
+
+## Artifact Paths (v2)
 
 | Artifact | Path |
 |----------|------|
-| Epic Brief | `neil-docs/epics/dungeon-seed/APPROVED-EPIC-BRIEF.md` |
-| GDD | `neil-docs/epics/dungeon-seed/GDD.md` |
-| Decomposition | `neil-docs/epics/dungeon-seed/DECOMPOSITION.md` |
-| Tickets | `neil-docs/tickets/task-{NNN}-*.md` |
-| Plans | `neil-docs/implementation-plans/dungeon-seed/task-{NNN}-plan.md` |
-| QA Test Plans | `neil-docs/qa-test-plans/dungeon-seed/task-{NNN}-qa-plan.md` |
-| QA Test Results | `neil-docs/qa-test-results/dungeon-seed/task-{NNN}-results-{date}.md` |
-| Bug Log | `neil-docs/qa-test-results/dungeon-seed/BUG-LOG.md` |
-| Audit Reports | `neil-docs/audit-reports/task-{NNN}-audit.md` |
-| Epic Audit | `neil-docs/audit-reports/dungeon-seed-epic-audit.md` |
-
-## Epic Audit
-
-| Dimension | Score | Notes |
-|-----------|-------|-------|
-| Cross-Task Consistency | ⬜ | |
-| Integration Completeness | ⬜ | |
-| Dependency Satisfaction | ⬜ | |
-| Scope Fidelity | ⬜ | |
-| End-to-End Validation | ⬜ | |
-| **Epic Verdict** | ⬜ | |
+| GDD v2 | `neil-docs/epics/dungeon-seed/GDD-v2.md` |
+| GDD v3 | `neil-docs/epics/dungeon-seed/GDD-v3.md` |
+| Decomposition v2 | `neil-docs/epics/dungeon-seed/DECOMPOSITION-v2.md` |
+| Pipeline Rulebook | `neil-docs/epics/dungeon-seed/GAME-DEV-PIPELINE.md` |
+| Tickets (v2) | `neil-docs/epics/dungeon-seed/tickets-v2/TASK-{NNN}-*.md` |
+| Plans (v2) | `neil-docs/epics/dungeon-seed/plans-v2/TASK-{NNN}-plan.md` |
+| Source (models) | `src/models/*.gd` |
+| Source (services) | `src/services/*.gd` |
+| Tests (models) | `tests/models/*.gd` |
+| Tests (services) | `tests/services/*.gd` |
 
 ## Session Log
 
 | Date | Session | What Happened |
 |------|---------|--------------|
-| 2026-04-12 | 1 | Restarted the Dungeon Seed epic from the pitch with a fresh GDD and decomposition |</content>
+| 2026-04-12 | 1 | Restarted the Dungeon Seed epic from the pitch with a fresh GDD and decomposition |
+| 2026-04-12-13 | 2-8 | Pre-pipeline implementation: All 12 tasks implemented directly. All tests passing. |
+| 2026-04-13 | 9 | Created GAME-DEV-PIPELINE.md rulebook. Transitioned to pipeline-driven development. |
+| 2026-04-13 | 10 | **PIPELINE COMPLIANCE AUDIT & FULL RESTART.** All prior work marked untrusted. Dispatched Game Vision Architect for proper GDD. |
+| 2026-04-13 | 11+ | v2 pipeline execution: GDD-v2, DECOMPOSITION-v2, tickets/plans written by specialist agents. Wave 1 implemented and committed. |
+| 2026-04-14 | — | **Wave 2 complete.** 6 tasks (TASK-004→009) audited and committed. 490+ unit tests across 11 models + save service. All audits PASS. |
+
+## Next Steps
+
+1. **Wave 3** (TASK-010 through TASK-014): Tickets and plans already exist. Implementation files for TASK-010/011 may exist as untracked drafts — audit before committing.
+2. **Wave 4-6** (TASK-015 through TASK-022): Tickets and plans need to be written by specialist agents.</content>
 <parameter name="filePath">c:\Users\wrstl\source\dev-agent-tool\neil-docs\epics\dungeon-seed\EPIC-TRACKER.md
