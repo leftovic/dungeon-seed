@@ -56,15 +56,15 @@ func test_randi_range_negative_bounds() -> void:
 	## Validate: Negative bounds are supported
 	var rng: RefCounted = _make_rng(42)
 	var val: int = rng.randi_range(-20, -10)
-	assert_ge(val, -20, "Negative range lower bound")
-	assert_le(val, -10, "Negative range upper bound")
+	assert_true(val >= -20, "Negative range lower bound")
+	assert_true(val <= -10, "Negative range upper bound")
 
 func test_randi_range_large_range() -> void:
 	## Validate: Large ranges work correctly
 	var rng: RefCounted = _make_rng(42)
 	var val: int = rng.randi_range(0, 1000000)
-	assert_ge(val, 0, "Large range lower bound")
-	assert_le(val, 1000000, "Large range upper bound")
+	assert_true(val >= 0, "Large range lower bound")
+	assert_true(val <= 1000000, "Large range upper bound")
 
 func test_randi_range_zero_to_positive() -> void:
 	## Edge case: range including zero [0, 10]
@@ -74,8 +74,8 @@ func test_randi_range_zero_to_positive() -> void:
 		var val: int = rng.randi_range(0, 10)
 		if val == 0:
 			seen_zero = true
-		assert_ge(val, 0, "randi_range(0, 10) must be >= 0")
-		assert_le(val, 10, "randi_range(0, 10) must be <= 10")
+		assert_true(val >= 0, "randi_range(0, 10) must be >= 0")
+		assert_true(val <= 10, "randi_range(0, 10) must be <= 10")
 	assert_true(seen_zero, "randi_range(0, 10) should eventually produce 0")
 
 # ---------------------------------------------------------------------------
@@ -298,8 +298,9 @@ func test_integration_all_use_core_rng() -> void:
 	var p2: Variant = b.pick([1, 2, 3, 4, 5])
 	assert_eq(p1, p2, "pick() determinism check")
 	
-	var w1: Variant = a.weighted_pick(["X", "Y"], [0.5, 0.5])
-	var w2: Variant = b.weighted_pick(["X", "Y"], [0.5, 0.5])
+	var wp_weights: Array[float] = [0.5, 0.5]
+	var w1: Variant = a.weighted_pick(["X", "Y"], wp_weights)
+	var w2: Variant = b.weighted_pick(["X", "Y"], wp_weights)
 	assert_eq(w1, w2, "weighted_pick() determinism check")
 
 func test_integration_pure_functions() -> void:

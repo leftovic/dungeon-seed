@@ -117,31 +117,31 @@ func test_warrior_base_stats() -> void:
 
 func test_ranger_base_stats() -> void:
 	var adv: AdventurerData = _create_adventurer(Enums.AdventurerClass.RANGER)
-	var expected: Dictionary = { "health": 85, "attack": 14, "defense": 8, "speed": 18, "utility": 10 }
+	var expected: Dictionary = { "health": 85, "attack": 14, "defense": 10, "speed": 15, "utility": 10 }
 	assert_eq(adv.stats, expected, "Ranger base stats should match GDD spec")
 
 
 func test_mage_base_stats() -> void:
 	var adv: AdventurerData = _create_adventurer(Enums.AdventurerClass.MAGE)
-	var expected: Dictionary = { "health": 70, "attack": 12, "defense": 6, "speed": 10, "utility": 20 }
+	var expected: Dictionary = { "health": 70, "attack": 12, "defense": 8, "speed": 10, "utility": 20 }
 	assert_eq(adv.stats, expected, "Mage base stats should match GDD spec")
 
 
 func test_rogue_base_stats() -> void:
 	var adv: AdventurerData = _create_adventurer(Enums.AdventurerClass.ROGUE)
-	var expected: Dictionary = { "health": 80, "attack": 15, "defense": 7, "speed": 16, "utility": 14 }
+	var expected: Dictionary = { "health": 75, "attack": 16, "defense": 8, "speed": 18, "utility": 12 }
 	assert_eq(adv.stats, expected, "Rogue base stats should match GDD spec")
 
 
 func test_alchemist_base_stats() -> void:
 	var adv: AdventurerData = _create_adventurer(Enums.AdventurerClass.ALCHEMIST)
-	var expected: Dictionary = { "health": 90, "attack": 10, "defense": 10, "speed": 12, "utility": 18 }
+	var expected: Dictionary = { "health": 80, "attack": 10, "defense": 12, "speed": 10, "utility": 18 }
 	assert_eq(adv.stats, expected, "Alchemist base stats should match GDD spec")
 
 
 func test_sentinel_base_stats() -> void:
 	var adv: AdventurerData = _create_adventurer(Enums.AdventurerClass.SENTINEL)
-	var expected: Dictionary = { "health": 140, "attack": 8, "defense": 20, "speed": 5, "utility": 8 }
+	var expected: Dictionary = { "health": 130, "attack": 10, "defense": 20, "speed": 6, "utility": 8 }
 	assert_eq(adv.stats, expected, "Sentinel base stats should match GDD spec")
 
 

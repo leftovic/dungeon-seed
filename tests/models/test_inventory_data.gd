@@ -70,6 +70,8 @@ func test_remove_item_zero_quantity_not_in_list() -> void:
 	var all_items: Array[Dictionary] = inv.list_all()
 	for entry in all_items:
 		assert_ne(entry["item_id"], "iron_sword")
+	# Ensure zero-quantity items are removed from the list
+	assert_eq(inv.get_quantity("iron_sword"), 0, "Removed item should have zero quantity")
 
 
 # ---------------------------------------------------------------------------

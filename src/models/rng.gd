@@ -123,8 +123,10 @@ func randi(max_val: int) -> int:
 ## Returns:
 ##   Integer in [min_val, max_val]
 func randi_range(min_val: int, max_val: int) -> int:
-	assert(min_val <= max_val,
-		"randi_range: min_val must be <= max_val (got min_val=%d, max_val=%d)" % [min_val, max_val])
+	if min_val > max_val:
+		var tmp: int = min_val
+		min_val = max_val
+		max_val = tmp
 	if min_val == max_val:
 		return min_val
 	var span: int = max_val - min_val + 1

@@ -34,9 +34,9 @@ enum SeedPhase { SPORE, SPROUT, BUD, BLOOM }
 # ---------------------------------------------------------------------------
 
 ## Types of rooms that can appear in a dungeon layout.
-## Values: COMBAT=0, TREASURE=1, TRAP=2, PUZZLE=3, REST=4, BOSS=5
+## Values: COMBAT=0, TREASURE=1, TRAP=2, PUZZLE=3, REST=4, BOSS=5, ENTRANCE=6, SECRET=7
 ## GDD Reference: §4.2 (Dungeon Generation — Room Types)
-enum RoomType { COMBAT, TREASURE, TRAP, PUZZLE, REST, BOSS }
+enum RoomType { COMBAT, TREASURE, TRAP, PUZZLE, REST, BOSS, ENTRANCE, SECRET }
 
 ## Status of an expedition (adventurer party sent into a dungeon).
 ## Values: PREPARING=0, IN_PROGRESS=1, COMPLETED=2, FAILED=3

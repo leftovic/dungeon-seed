@@ -13,7 +13,7 @@ func _make_room(idx: int, room_type: Enums.RoomType) -> RoomData:
 	room.position = Vector2(float(idx) * 3.0, 0.0)
 	room.size = Vector2(2.0, 2.0)
 	room.difficulty = idx + 1
-	room.loot_bias = Enums.Currency.GOLD
+	room.loot_bias = {Enums.Currency.GOLD: 1.0}
 	return room
 
 

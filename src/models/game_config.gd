@@ -73,6 +73,8 @@ const ROOM_DIFFICULTY_SCALE: Dictionary = {
 	Enums.RoomType.PUZZLE: 0.6,
 	Enums.RoomType.REST: 0.0,
 	Enums.RoomType.BOSS: 2.0,
+	Enums.RoomType.ENTRANCE: 0.0,
+	Enums.RoomType.SECRET: 1.2,
 }
 
 

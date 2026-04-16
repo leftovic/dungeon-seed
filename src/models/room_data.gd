@@ -21,8 +21,8 @@ var size: Vector2 = Vector2(1.0, 1.0)
 ## Encounter difficulty rating. Higher means harder enemies/traps.
 var difficulty: int = 1
 
-## Which currency type this room's drops are biased toward.
-var loot_bias: Enums.Currency = Enums.Currency.GOLD
+## Currency weight distribution for this room's drops. Maps Enums.Currency -> float weight.
+var loot_bias: Dictionary = {}
 
 ## Whether this room has been completed during the current expedition.
 var is_cleared: bool = false
@@ -54,7 +54,7 @@ func to_dict() -> Dictionary:
 		"position": {"x": position.x, "y": position.y},
 		"size": {"x": size.x, "y": size.y},
 		"difficulty": difficulty,
-		"loot_bias": int(loot_bias),
+		"loot_bias": loot_bias.duplicate(),
 		"is_cleared": is_cleared,
 		"metadata": metadata.duplicate(true),
 	}
@@ -78,7 +78,11 @@ static func from_dict(data: Dictionary) -> RoomData:
 			float(size_data.get("y", 1.0))
 		)
 	room.difficulty = int(data.get("difficulty", 1))
-	room.loot_bias = int(data.get("loot_bias", 0)) as Enums.Currency
+	var bias_val: Variant = data.get("loot_bias", {})
+	if bias_val is Dictionary:
+		room.loot_bias = (bias_val as Dictionary).duplicate()
+	else:
+		room.loot_bias = {}
 	room.is_cleared = bool(data.get("is_cleared", false))
 	var meta_val: Variant = data.get("metadata", {})
 	if meta_val is Dictionary:

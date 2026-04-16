@@ -7,7 +7,7 @@ extends GutTest
 # ---------------------------------------------------------------------------
 
 func _make_room(idx: int, room_type: Enums.RoomType, pos: Vector2, sz: Vector2,
-		diff: int, bias: Enums.Currency, cleared: bool,
+		diff: int, bias: Dictionary, cleared: bool,
 		meta: Dictionary) -> RoomData:
 	var room := RoomData.new()
 	room.index = idx
@@ -56,7 +56,7 @@ func test_default_difficulty() -> void:
 
 func test_default_loot_bias() -> void:
 	var room := _make_default_room()
-	assert_eq(room.loot_bias, Enums.Currency.GOLD, "Default loot_bias should be GOLD")
+	assert_eq(room.loot_bias, {}, "Default loot_bias should be empty dict")
 
 
 func test_default_is_cleared() -> void:
@@ -106,8 +106,8 @@ func test_set_difficulty() -> void:
 
 func test_set_loot_bias() -> void:
 	var room := _make_default_room()
-	room.loot_bias = Enums.Currency.ESSENCE
-	assert_eq(room.loot_bias, Enums.Currency.ESSENCE)
+	room.loot_bias = {Enums.Currency.ESSENCE: 0.8, Enums.Currency.GOLD: 0.2}
+	assert_eq(room.loot_bias[Enums.Currency.ESSENCE], 0.8)
 
 
 func test_set_is_cleared() -> void:
@@ -128,32 +128,32 @@ func test_set_metadata() -> void:
 # ---------------------------------------------------------------------------
 
 func test_is_combat_true() -> void:
-	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2.ZERO, Vector2.ONE, 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2.ZERO, Vector2.ONE, 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	assert_true(room.is_combat())
 
 
 func test_is_combat_false_for_boss() -> void:
-	var room := _make_room(0, Enums.RoomType.BOSS, Vector2.ZERO, Vector2.ONE, 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.BOSS, Vector2.ZERO, Vector2.ONE, 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	assert_false(room.is_combat())
 
 
 func test_is_boss_true() -> void:
-	var room := _make_room(0, Enums.RoomType.BOSS, Vector2.ZERO, Vector2.ONE, 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.BOSS, Vector2.ZERO, Vector2.ONE, 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	assert_true(room.is_boss())
 
 
 func test_is_boss_false_for_combat() -> void:
-	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2.ZERO, Vector2.ONE, 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2.ZERO, Vector2.ONE, 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	assert_false(room.is_boss())
 
 
 func test_is_rest_true() -> void:
-	var room := _make_room(0, Enums.RoomType.REST, Vector2.ZERO, Vector2.ONE, 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.REST, Vector2.ZERO, Vector2.ONE, 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	assert_true(room.is_rest())
 
 
 func test_is_rest_false_for_trap() -> void:
-	var room := _make_room(0, Enums.RoomType.TRAP, Vector2.ZERO, Vector2.ONE, 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.TRAP, Vector2.ZERO, Vector2.ONE, 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	assert_false(room.is_rest())
 
 
@@ -175,13 +175,13 @@ func test_to_dict_has_all_keys() -> void:
 
 
 func test_to_dict_type_is_int() -> void:
-	var room := _make_room(0, Enums.RoomType.TREASURE, Vector2.ZERO, Vector2.ONE, 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.TREASURE, Vector2.ZERO, Vector2.ONE, 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	var d: Dictionary = room.to_dict()
 	assert_typeof(d["type"], TYPE_INT)
 
 
 func test_to_dict_position_is_dict() -> void:
-	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2(5.5, 3.2), Vector2.ONE, 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2(5.5, 3.2), Vector2.ONE, 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	var d: Dictionary = room.to_dict()
 	assert_typeof(d["position"], TYPE_DICTIONARY)
 	assert_almost_eq(float(d["position"]["x"]), 5.5, 0.001)
@@ -189,22 +189,22 @@ func test_to_dict_position_is_dict() -> void:
 
 
 func test_to_dict_size_is_dict() -> void:
-	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2.ZERO, Vector2(2.0, 3.0), 1, Enums.Currency.GOLD, false, {})
+	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2.ZERO, Vector2(2.0, 3.0), 1, {Enums.Currency.GOLD: 1.0}, false, {})
 	var d: Dictionary = room.to_dict()
 	assert_typeof(d["size"], TYPE_DICTIONARY)
 	assert_almost_eq(float(d["size"]["x"]), 2.0, 0.001)
 	assert_almost_eq(float(d["size"]["y"]), 3.0, 0.001)
 
 
-func test_to_dict_loot_bias_is_int() -> void:
-	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2.ZERO, Vector2.ONE, 1, Enums.Currency.ESSENCE, false, {})
+func test_to_dict_loot_bias_is_dict() -> void:
+	var room := _make_room(0, Enums.RoomType.COMBAT, Vector2.ZERO, Vector2.ONE, 1, {Enums.Currency.ESSENCE: 1.0}, false, {})
 	var d: Dictionary = room.to_dict()
-	assert_typeof(d["loot_bias"], TYPE_INT)
+	assert_typeof(d["loot_bias"], TYPE_DICTIONARY)
 
 
 func test_to_dict_metadata_preserved() -> void:
 	var meta := {"boss_id": "flame_warden", "phases": [1, 2, 3]}
-	var room := _make_room(0, Enums.RoomType.BOSS, Vector2.ZERO, Vector2.ONE, 8, Enums.Currency.FRAGMENTS, false, meta)
+	var room := _make_room(0, Enums.RoomType.BOSS, Vector2.ZERO, Vector2.ONE, 8, {Enums.Currency.FRAGMENTS: 1.0}, false, meta)
 	var d: Dictionary = room.to_dict()
 	assert_eq(d["metadata"]["boss_id"], "flame_warden")
 	assert_eq(d["metadata"]["phases"], [1, 2, 3])
@@ -229,7 +229,7 @@ func test_round_trip_default() -> void:
 
 func test_round_trip_custom() -> void:
 	var original := _make_room(5, Enums.RoomType.PUZZLE, Vector2(10.0, -5.0),
-		Vector2(3.0, 2.0), 7, Enums.Currency.ESSENCE, true,
+		Vector2(3.0, 2.0), 7, {Enums.Currency.ESSENCE: 0.7, Enums.Currency.GOLD: 0.3}, true,
 		{"puzzle_id": "slider_01", "time_limit": 30.0})
 	var restored := RoomData.from_dict(original.to_dict())
 	assert_eq(restored.index, 5)
@@ -239,7 +239,7 @@ func test_round_trip_custom() -> void:
 	assert_almost_eq(restored.size.x, 3.0, 0.001)
 	assert_almost_eq(restored.size.y, 2.0, 0.001)
 	assert_eq(restored.difficulty, 7)
-	assert_eq(restored.loot_bias, Enums.Currency.ESSENCE)
+	assert_true(restored.loot_bias.has(Enums.Currency.ESSENCE))
 	assert_true(restored.is_cleared)
 	assert_eq(restored.metadata["puzzle_id"], "slider_01")
 	assert_almost_eq(float(restored.metadata["time_limit"]), 30.0, 0.001)

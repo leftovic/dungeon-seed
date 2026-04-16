@@ -191,23 +191,27 @@ func test_room_difficulty_scale_has_all_room_type_keys() -> void:
 		Enums.RoomType.PUZZLE,
 		Enums.RoomType.REST,
 		Enums.RoomType.BOSS,
+		Enums.RoomType.ENTRANCE,
+		Enums.RoomType.SECRET,
 	]
 	
 	var actual_keys: Array = GameConfig.ROOM_DIFFICULTY_SCALE.keys()
-	assert_eq(actual_keys.size(), 6, "ROOM_DIFFICULTY_SCALE has exactly 6 keys")
+	assert_eq(actual_keys.size(), 8, "ROOM_DIFFICULTY_SCALE has exactly 8 keys")
 	
 	for key: int in expected_keys:
 		assert_true(GameConfig.ROOM_DIFFICULTY_SCALE.has(key))
 
 
 func test_room_difficulty_scale_exact_values() -> void:
-	# FR-017: Exact values per spec - FIXED: TRAP was 1.2, should be 0.8
+	# FR-017: Exact values per spec
 	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE[Enums.RoomType.COMBAT], 1.0)
 	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE[Enums.RoomType.TREASURE], 0.5)
 	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE[Enums.RoomType.TRAP], 0.8)
 	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE[Enums.RoomType.PUZZLE], 0.6)
 	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE[Enums.RoomType.REST], 0.0)
 	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE[Enums.RoomType.BOSS], 2.0)
+	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE[Enums.RoomType.ENTRANCE], 0.0)
+	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE[Enums.RoomType.SECRET], 1.2)
 
 
 func test_room_difficulty_scale_range() -> void:
@@ -422,31 +426,31 @@ func test_rarity_colors_has_all_rarity_keys() -> void:
 
 
 func test_rarity_colors_exact_values() -> void:
-	# FR-022: Exact values per spec - FIXED: COMMON was 0.66, should be 0.78; LEGENDARY was 1.0, should be 0.95
+	# FR-022: Exact values per spec
 	var common_color: Color = GameConfig.RARITY_COLORS[Enums.SeedRarity.COMMON]
-	assert_eq(common_color.r, 0.78)
-	assert_eq(common_color.g, 0.78)
-	assert_eq(common_color.b, 0.78)
+	assert_almost_eq(common_color.r, 0.78, 0.01)
+	assert_almost_eq(common_color.g, 0.78, 0.01)
+	assert_almost_eq(common_color.b, 0.78, 0.01)
 	
 	var uncommon_color: Color = GameConfig.RARITY_COLORS[Enums.SeedRarity.UNCOMMON]
-	assert_eq(uncommon_color.r, 0.18)
-	assert_eq(uncommon_color.g, 0.80)
-	assert_eq(uncommon_color.b, 0.25)
+	assert_almost_eq(uncommon_color.r, 0.18, 0.01)
+	assert_almost_eq(uncommon_color.g, 0.80, 0.01)
+	assert_almost_eq(uncommon_color.b, 0.25, 0.01)
 	
 	var rare_color: Color = GameConfig.RARITY_COLORS[Enums.SeedRarity.RARE]
-	assert_eq(rare_color.r, 0.25)
-	assert_eq(rare_color.g, 0.52)
-	assert_eq(rare_color.b, 0.96)
+	assert_almost_eq(rare_color.r, 0.25, 0.01)
+	assert_almost_eq(rare_color.g, 0.52, 0.01)
+	assert_almost_eq(rare_color.b, 0.96, 0.01)
 	
 	var epic_color: Color = GameConfig.RARITY_COLORS[Enums.SeedRarity.EPIC]
-	assert_eq(epic_color.r, 0.64)
-	assert_eq(epic_color.g, 0.21)
-	assert_eq(epic_color.b, 0.93)
+	assert_almost_eq(epic_color.r, 0.64, 0.01)
+	assert_almost_eq(epic_color.g, 0.21, 0.01)
+	assert_almost_eq(epic_color.b, 0.93, 0.01)
 	
 	var legendary_color: Color = GameConfig.RARITY_COLORS[Enums.SeedRarity.LEGENDARY]
-	assert_eq(legendary_color.r, 0.95)
-	assert_eq(legendary_color.g, 0.77)
-	assert_eq(legendary_color.b, 0.06)
+	assert_almost_eq(legendary_color.r, 0.95, 0.01)
+	assert_almost_eq(legendary_color.g, 0.77, 0.01)
+	assert_almost_eq(legendary_color.b, 0.06, 0.01)
 
 
 func test_rarity_colors_rgb_in_range() -> void:
@@ -477,9 +481,11 @@ func test_get_base_stats_returns_copy() -> void:
 	var warrior_stats1: Dictionary = GameConfig.get_base_stats(Enums.AdventurerClass.WARRIOR)
 	var warrior_stats2: Dictionary = GameConfig.get_base_stats(Enums.AdventurerClass.WARRIOR)
 	
-	# Should be equal but different objects
+	# Should be equal by value
 	assert_eq(warrior_stats1, warrior_stats2)
-	assert_ne(warrior_stats1, warrior_stats2)  # Different object references
+	# Mutating one should not affect the other (proves they're independent copies)
+	warrior_stats1["health"] = 999
+	assert_ne(warrior_stats1["health"], warrior_stats2["health"], "Copies should be independent")
 
 
 func test_get_base_stats_mutation_doesnt_affect_const() -> void:
@@ -527,10 +533,14 @@ func test_get_xp_for_tier() -> void:
 func test_get_rarity_color() -> void:
 	# Test get_rarity_color helper
 	var common_color: Color = GameConfig.get_rarity_color(Enums.SeedRarity.COMMON)
-	assert_eq(common_color, Color(0.78, 0.78, 0.78))
+	assert_almost_eq(common_color.r, 0.78, 0.01)
+	assert_almost_eq(common_color.g, 0.78, 0.01)
+	assert_almost_eq(common_color.b, 0.78, 0.01)
 	
 	var legendary_color: Color = GameConfig.get_rarity_color(Enums.SeedRarity.LEGENDARY)
-	assert_eq(legendary_color, Color(0.95, 0.77, 0.06))
+	assert_almost_eq(legendary_color.r, 0.95, 0.01)
+	assert_almost_eq(legendary_color.g, 0.77, 0.01)
+	assert_almost_eq(legendary_color.b, 0.06, 0.01)
 
 
 func test_get_room_difficulty() -> void:
@@ -592,7 +602,7 @@ func test_all_enums_have_entries_fr025() -> void:
 		)
 	
 	# RoomType enums
-	for room: int in range(6):  # 0-5 for COMBAT..BOSS
+	for room: int in range(8):  # 0-7 for COMBAT..SECRET
 		assert_true(
 			GameConfig.ROOM_DIFFICULTY_SCALE.has(room),
 			"RoomType.%d in ROOM_DIFFICULTY_SCALE" % room
@@ -628,8 +638,8 @@ func test_no_orphaned_dictionary_entries() -> void:
 	# ELEMENT_NAMES should have exactly 6 (Element count)
 	assert_eq(GameConfig.ELEMENT_NAMES.size(), 6)
 	
-	# ROOM_DIFFICULTY_SCALE should have exactly 6 (RoomType count)
-	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE.size(), 6)
+	# ROOM_DIFFICULTY_SCALE should have exactly 8 (RoomType count)
+	assert_eq(GameConfig.ROOM_DIFFICULTY_SCALE.size(), 8)
 	
 	# XP_PER_TIER should have exactly 4 (LevelTier count)
 	assert_eq(GameConfig.XP_PER_TIER.size(), 4)

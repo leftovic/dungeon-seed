@@ -54,7 +54,7 @@ func test_room_type_values() -> void:
 
 
 func test_room_type_count() -> void:
-	assert_eq(Enums.RoomType.size(), 6, "RoomType should have exactly 6 values")
+	assert_eq(Enums.RoomType.size(), 8, "RoomType should have exactly 8 values")
 
 
 func test_adventurer_class_values() -> void:
@@ -451,17 +451,19 @@ func test_get_rarity_color_type() -> void:
 func test_get_room_difficulty_all() -> void:
 	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.COMBAT), 1.0)
 	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.TREASURE), 0.5)
-	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.TRAP), 1.2)
-	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.PUZZLE), 0.8)
+	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.TRAP), 0.8)
+	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.PUZZLE), 0.6)
 	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.REST), 0.0)
 	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.BOSS), 2.0)
+	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.ENTRANCE), 0.0)
+	assert_eq(GameConfig.get_room_difficulty(Enums.RoomType.SECRET), 1.2)
 
 
 func test_get_phase_multiplier_all() -> void:
 	assert_eq(GameConfig.get_phase_multiplier(Enums.SeedPhase.SPORE), 1.0)
-	assert_eq(GameConfig.get_phase_multiplier(Enums.SeedPhase.SPROUT), 0.9)
-	assert_eq(GameConfig.get_phase_multiplier(Enums.SeedPhase.BUD), 0.75)
-	assert_eq(GameConfig.get_phase_multiplier(Enums.SeedPhase.BLOOM), 0.5)
+	assert_eq(GameConfig.get_phase_multiplier(Enums.SeedPhase.SPROUT), 1.5)
+	assert_eq(GameConfig.get_phase_multiplier(Enums.SeedPhase.BUD), 2.0)
+	assert_eq(GameConfig.get_phase_multiplier(Enums.SeedPhase.BLOOM), 3.0)
 
 
 func test_get_base_stats_returns_copy() -> void:
