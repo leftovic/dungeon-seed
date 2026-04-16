@@ -391,7 +391,7 @@ func test_from_dict_restores_transaction_log() -> void:
 func test_invariant_balance_never_negative_after_failed_debit() -> void:
 	_wallet.credit(Enums.Currency.GOLD, 50)
 	_wallet.debit(Enums.Currency.GOLD, 100)  # Should fail
-	assert_ge(_wallet.get_balance(Enums.Currency.GOLD), 0, "Balance must never go negative")
+	assert_true(_wallet.get_balance(Enums.Currency.GOLD) >= 0, "Balance must never go negative")
 
 
 func test_invariant_balance_never_negative_after_failed_transact() -> void:
@@ -399,8 +399,8 @@ func test_invariant_balance_never_negative_after_failed_transact() -> void:
 	var costs: Dictionary = {Enums.Currency.GOLD: 100}
 	var gains: Dictionary = {Enums.Currency.ESSENCE: 50}
 	_wallet.transact(costs, gains)  # Should fail
-	assert_ge(_wallet.get_balance(Enums.Currency.GOLD), 0, "Balance must never go negative")
-	assert_ge(_wallet.get_balance(Enums.Currency.ESSENCE), 0, "Essence must remain 0 (not credited)")
+	assert_true(_wallet.get_balance(Enums.Currency.GOLD) >= 0, "Balance must never go negative")
+	assert_true(_wallet.get_balance(Enums.Currency.ESSENCE) >= 0, "Essence must remain 0 (not credited)")
 
 
 # ---------------------------------------------------------------------------
