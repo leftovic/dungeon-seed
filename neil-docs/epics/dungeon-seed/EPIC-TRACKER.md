@@ -18,7 +18,7 @@
 - ✅ Implementation Plan Builder → TASK-001 through TASK-014 plans
 - ✅ **Wave 1 complete** — Bootstrap, RNG, Enums & GameConfig (TASK-001/002/003)
 - ✅ **Wave 2 complete** — Data Models, Economy, Save Service (TASK-004 through TASK-009)
-- 🟡 Wave 3 next — Generators & Managers (TASK-010 through TASK-014)
+- ✅ **Wave 3 complete** — Generators & Managers (TASK-010 through TASK-014) — 866 tests passing
 
 ### Pre-Pipeline Code (Legacy)
 Existing code at `src/gdscript/` and `tests/unit/` was written without specialist oversight (sessions 1-9).
@@ -50,14 +50,14 @@ See GAME-DEV-PIPELINE.md for the full agent-to-stage mapping.
 | 008 | Economy Wallet & Ledger | 5 | TASK-003 | ✅ | ✅ | ✅ | ✅ PASS (115+ tests) |
 | 009 | Save/Load Manager | 8 | TASK-003 | ✅ | ✅ | ✅ | ✅ PASS (52 tests) |
 
-### Wave 3 — Generators & Managers 🟡
+### Wave 3 — Generators & Managers ✅
 | # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
 |---|-----------|-----|-------------|--------|------|------|-------|
-| 010 | Dungeon Generator | 13 | TASK-004,005 | ✅ | ✅ | ⬜ | ⬜ |
-| 011 | Loot Table Engine | 8 | TASK-007,008 | ✅ | ✅ | ⬜ | ⬜ |
-| 012 | Seed Grove Manager | 8 | TASK-004 | ✅ | ✅ | ⬜ | ⬜ |
-| 013 | Adventurer Roster | 8 | TASK-006 | ✅ | ✅ | ⬜ | ⬜ |
-| 014 | Equipment System | 5 | TASK-006,007 | ✅ | ✅ | ⬜ | ⬜ |
+| 010 | Dungeon Generator | 13 | TASK-004,005 | ✅ | ✅ | ✅ | ✅ PASS (682 lines) |
+| 011 | Loot Table Engine | 8 | TASK-007,008 | ✅ | ✅ | ✅ | ✅ PASS (292+108 lines) |
+| 012 | Seed Grove Manager | 8 | TASK-004 | ✅ | ✅ | ✅ | ✅ PASS (455 lines, 650 test lines) |
+| 013 | Adventurer Roster | 8 | TASK-006 | ✅ | ✅ | ✅ | ✅ PASS (336 lines, 704 test lines) |
+| 014 | Equipment System | 5 | TASK-006,007 | ✅ | ✅ | ✅ | ✅ PASS (241 lines, 661 test lines) |
 
 ### Wave 4 — Core Loop ⬜
 | # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
