@@ -20,6 +20,7 @@
 - ✅ **Wave 2 complete** — Data Models, Economy, Save Service (TASK-004 through TASK-009)
 - ✅ **Wave 3 complete** — Generators & Managers (TASK-010 through TASK-014) — 866 tests passing
 - ✅ **Wave 4 complete** — Core Loop (TASK-015/016) — 1074 tests passing
+- ✅ **Wave 5 complete** — Integration & UI (TASK-017→020) — 1316 tests passing
 
 ### Pre-Pipeline Code (Legacy)
 Existing code at `src/gdscript/` and `tests/unit/` was written without specialist oversight (sessions 1-9).
@@ -66,13 +67,13 @@ See GAME-DEV-PIPELINE.md for the full agent-to-stage mapping.
 | 015 | Expedition Runner | 13 | TASK-010,011,013,014 | ✅ | ✅ | ✅ | ✅ PASS (90 tests) |
 | 016 | Reward Processor | 8 | TASK-012,015 | ✅ | ✅ | ✅ | ✅ PASS (70 tests) |
 
-### Wave 5 — UI & Presentation ⬜
+### Wave 5 — Integration & UI ✅
 | # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
 |---|-----------|-----|-------------|--------|------|------|-------|
-| 017 | Grove UI | 5 | TASK-012,016 | ⬜ | ⬜ | ⬜ | ⬜ |
-| 018 | Expedition UI | 5 | TASK-015,016 | ⬜ | ⬜ | ⬜ | ⬜ |
-| 019 | Inventory & Equipment UI | 5 | TASK-007,014 | ⬜ | ⬜ | ⬜ | ⬜ |
-| 020 | HUD & Notifications | 5 | TASK-016 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 017 | Core Loop Orchestrator | 13 | TASK-012,015,016 | ✅ | ✅ | ✅ | ✅ PASS (68 tests) |
+| 018 | Seed Grove UI | 8 | TASK-012,016 | ✅ | ✅ | ✅ | ✅ PASS (48 tests) |
+| 019 | Expedition UI | 8 | TASK-015,016 | ✅ | ✅ | ✅ | ✅ PASS (57 tests) |
+| 020 | Adventurer & Inventory UI | 8 | TASK-013,014 | ✅ | ✅ | ✅ | ✅ PASS (69 tests) |
 
 ### Wave 6 — Integration & Polish ⬜
 | # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
@@ -108,6 +109,5 @@ See GAME-DEV-PIPELINE.md for the full agent-to-stage mapping.
 
 ## Next Steps
 
-1. **Wave 3** (TASK-010 through TASK-014): Tickets and plans already exist. Implementation files for TASK-010/011 may exist as untracked drafts — audit before committing.
-2. **Wave 4-6** (TASK-015 through TASK-022): Tickets and plans need to be written by specialist agents.</content>
+1. **Wave 6** (TASK-021, TASK-022): Scene Router & Flow + MVP Integration Test. Final wave!</content>
 <parameter name="filePath">c:\Users\wrstl\source\dev-agent-tool\neil-docs\epics\dungeon-seed\EPIC-TRACKER.md
