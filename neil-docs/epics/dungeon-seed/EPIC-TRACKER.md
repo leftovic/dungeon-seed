@@ -19,6 +19,7 @@
 - ✅ **Wave 1 complete** — Bootstrap, RNG, Enums & GameConfig (TASK-001/002/003)
 - ✅ **Wave 2 complete** — Data Models, Economy, Save Service (TASK-004 through TASK-009)
 - ✅ **Wave 3 complete** — Generators & Managers (TASK-010 through TASK-014) — 866 tests passing
+- ✅ **Wave 4 complete** — Core Loop (TASK-015/016) — 1074 tests passing
 
 ### Pre-Pipeline Code (Legacy)
 Existing code at `src/gdscript/` and `tests/unit/` was written without specialist oversight (sessions 1-9).
@@ -59,11 +60,11 @@ See GAME-DEV-PIPELINE.md for the full agent-to-stage mapping.
 | 013 | Adventurer Roster | 8 | TASK-006 | ✅ | ✅ | ✅ | ✅ PASS (336 lines, 704 test lines) |
 | 014 | Equipment System | 5 | TASK-006,007 | ✅ | ✅ | ✅ | ✅ PASS (241 lines, 661 test lines) |
 
-### Wave 4 — Core Loop ⬜
+### Wave 4 — Core Loop ✅
 | # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
 |---|-----------|-----|-------------|--------|------|------|-------|
-| 015 | Expedition Runner | 13 | TASK-010,011,013,014 | ⬜ | ⬜ | ⬜ | ⬜ |
-| 016 | Core Loop Orchestrator | 8 | TASK-012,015 | ⬜ | ⬜ | ⬜ | ⬜ |
+| 015 | Expedition Runner | 13 | TASK-010,011,013,014 | ✅ | ✅ | ✅ | ✅ PASS (90 tests) |
+| 016 | Reward Processor | 8 | TASK-012,015 | ✅ | ✅ | ✅ | ✅ PASS (70 tests) |
 
 ### Wave 5 — UI & Presentation ⬜
 | # | Task Name | Pts | Dependencies | Ticket | Plan | Code | Audit |
